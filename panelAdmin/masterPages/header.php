@@ -19,3 +19,4 @@
             <a href="../index.php">Log Out</a>
         </nav>
     </header>
+    <hr>

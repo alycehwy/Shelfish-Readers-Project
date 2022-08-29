@@ -2,6 +2,6 @@
     $dbServername = "localhost";
     $dbUsername = "root";
     $dbPass = "";
-    $dbname = "shelfish_readers";
-    $dbcon = new mysqli($dbServername, $dbUsername, $dbPass, $dbname);
+    $dbname = "shelfishrd_db";
+    $dbConection = new mysqli($dbServername, $dbUsername, $dbPass, $dbname);
 ?>

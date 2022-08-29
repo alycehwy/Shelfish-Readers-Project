@@ -7,7 +7,7 @@
         }
     }
     $reqURL = $_SERVER['REQUEST_URI'];
-    if($reqURL == "/paneladmin/" || $reqURL == "/paneladmin"){
+    if($reqURL == "/panelAdmin/" || $reqURL == "/panelAdmin"){
         $page = "home";
     }else{
         $page = basename($reqURL);

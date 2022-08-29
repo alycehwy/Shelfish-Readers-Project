@@ -14,6 +14,8 @@
             <a href="./books">All Books</a>
             <a href="./prevRec">Previous Record</a>
             <a href="./currentBrw">Current Borrow</a>
+            <a href="./buyer">Buy second-hand books</a>
+            <a href="./seller">Sell second-hand books</a>
             <a href="./donate">Donate</a>
             <a href="../index.php">Log Out</a>
         </nav>

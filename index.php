@@ -5,12 +5,12 @@
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         $username = $_POST['username'];
         $password = $_POST['password'];
-        if($dbcon -> connect_error){
+        if($dbConection -> connect_error){
             die("Connection error");
         }
         else{
             $selectCmd = "SELECT * FROM `user_tb` WHERE username='$username';";
-            $result = $dbcon->query($selectCmd);
+            $result = $dbConection->query($selectCmd);
             if($result-> num_rows > 0){
                 $user = $result -> fetch_assoc();
                 $hashedPass = $user['password'];
@@ -29,7 +29,7 @@
             else{
                 $loginError = 'show';
             }
-            $dbcon -> close();
+            $dbConection -> close();
         }
     }
 ?>

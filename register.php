@@ -12,12 +12,12 @@
         $lastName = $_POST['lastName'];
         $email = $_POST['email'];
 
-        if($dbcon -> connect_error){
+        if($dbConection -> connect_error){
             die("Connection error");
         }
         else{
             $selectCmd = "SELECT * FROM `user_tb` WHERE username='$username';";
-            $result = $dbcon->query($selectCmd);
+            $result = $dbConection->query($selectCmd);
             if($result-> num_rows <= 0){
                 // Validate password strength
                 $uppercase = preg_match('@[A-Z]@', $password);
@@ -30,12 +30,12 @@
                     if($cPassword == $password){
                         $password =  password_hash($_POST['password'],PASSWORD_BCRYPT,["cost"=>9]);
                         $insertCmd = "INSERT INTO user_tb (username, password, first_name, last_name, email, title) VALUES ('".$username."', '".$password."', '".$firstName."', '".$lastName."', '".$email."','user')";
-                        $result = $dbcon-> query($insertCmd);
+                        $result = $dbConection-> query($insertCmd);
                         if($result === true){
                             echo "<h1 style ='color: green;'>Register success!</h1>";
                             // header("Location: http://localhost/PHP/Final/");
                         }else{
-                            echo "<h1 style ='color: red;'>".$dbcon->error."</h1>";
+                            echo "<h1 style ='color: red;'>".$dbConection->error."</h1>";
                         }
                     }
                     else{   
@@ -46,7 +46,7 @@
             else{
                 $userError = 'show';
             }
-            $dbcon -> close();
+            $dbConection -> close();
         }
     }
 ?>    
