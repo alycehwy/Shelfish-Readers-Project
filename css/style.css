@@ -1,0 +1,140 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+
+/* Login */
+.loginPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginPage header{
+    padding: 3%;
+    font-size: 24px;
+}
+
+.loginPage footer{
+    padding: 3%;
+}
+
+.login{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login form{
+    width: 28%;
+}
+
+.login fieldset{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    padding: 5%;
+}
+
+.login legend{
+    font-size: 48px;
+    font-weight: 600;
+    padding: 0% 5% 0% 5%;
+}
+
+.login button{
+    padding: 2%;
+}
+
+.info{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.info label{
+    font-weight: 600;
+    padding: 2%;
+}
+
+.info input{
+    padding: 2%;
+}
+
+.checkbox{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    column-gap: 5px;
+}
+
+.reg{
+    display: flex;
+    column-gap: 10px;
+}
+
+.error{
+    color: red;
+}
+
+.noshow{
+    display: none;
+}
+.show{
+    display: block;
+}
+
+/* Register */
+.register{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 2%;
+}
+
+.register form{
+    width: 40%;
+}
+
+.register fieldset{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 30px;
+    padding: 5%;
+}
+
+.register legend{
+    font-size: 48px;
+    font-weight: 600;
+    padding: 0% 5% 0% 5%;
+}
+
+.register button{
+    width: 15%;
+    padding: 1%;
+}
+
+.registerInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.registerInfo label{
+    font-weight: 600;
+    padding: 1.5%;
+    width: 65%;
+}
+
+.registerInfo input{
+    padding: 1.5%;
+    width: 65%;
+}
+
+
