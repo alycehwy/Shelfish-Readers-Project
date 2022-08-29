@@ -35,7 +35,7 @@
                     if(move_uploaded_file($sourceImg['tmp_name'],$imgDest)){
                         $dbcon = mysqli_connect("localhost","root","","books_db");
                         if($dbcon->connect_error){
-                            echo "<h1>".$db~con->connect_error."</h1>";
+                            echo "<h1>".$dbcon->connect_error."</h1>";
                         }else{
                             $insertCmd = "INSERT INTO books_tb (productName,authorName,productDetails,price) VALUES ('".$productName."','".$authorName."','".$productDetails."','".$price."')";
                             if($dbcon->query($insertCmd)===TRUE){
