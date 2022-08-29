@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+:root{
+    --headerHeight: 20vh;
+    --paddingContent: 0 10vw;
+}
+
+html{
+    font-size: 16px;
+}
+
+/* Header */
+header{
+    width: 100vw;
+    min-height: var(--headerHeight);
+    background-image: linear-gradient(to left, royalblue,skyblue 30%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    isolation: isolate;
+}
+
+/* Side NavBar */
+nav{
+    position: fixed;
+    background-image: linear-gradient(skyblue 30%,royalblue);
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    row-gap: 6vh;
+    height: 100vh;
+    width: 10vw;
+}
+nav > a{
+    color: white;
+    text-shadow: 1px 1px 5px black;
+    text-decoration: none;
+    font-size: 1.15rem;
+    transition: .3s;
+}
+nav > a:hover{
+    text-shadow: 1px 1px 4px whitesmoke;
+}
+
+/* All h1s */
+h1{
+    font-size: 2.5em;
+    color: white;
+    position: relative;
+    text-shadow: 1px 1px 5px black;
+
+}
+
+/* Main Content */
+main{
+    padding: var(--paddingContent);
+    height: 80vh;
+    background-color: whitesmoke;
+    display: grid;
+    place-content: center;
+    row-gap: 5px;
+}
+
+/* Footer */
+footer{
+    padding: var(--paddingContent);  
+    text-align: center;
+    height: 4vh;
+    font-size: .85rem;
+    background-color: whitesmoke;
+}
+
+/* Table to search books */
+table{
+  border-collapse: collapse;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+}
+thead{
+    background-color: darkgray;
+}
+tr{
+    border-bottom: 1px solid black;
+}
+tr:nth-child(even){
+    background-color: gainsboro;
+}
+th,td{
+    padding: .50em;
+    border-left: 1px solid black;
+}
+.search,.search-submit{
+    padding: .25em;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px black;
+}
+
+/* Inputs to upload a book */
+
+.addbook {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10px;
+}
+
+.addbook :is(input,textarea,button) {
+    padding: 1em .5em;
+    resize: none;
+    border-radius: 5px;
+}

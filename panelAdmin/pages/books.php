@@ -1,18 +1,10 @@
 <?php
-    include "./config.php";
+    include "../config.php";
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-        <input type="search" name="search" required/>
-        <input type="submit" name="submit" value='Search' required/>
+<main>
+        <form  method='POST' action='<?php echo "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/books";?>'>
+        <input class='search' type="search" name="search" placeholder='Search for a book'required/>
+        <input class='search-submit' type="submit" name="submit" value='Go' required/>
     </form>
     <?php 
         if(isset($_POST['submit'])){
@@ -20,7 +12,7 @@
             $selectCmd = "SELECT * FROM books_tb WHERE b_id LIKE '%$search%' OR b_title LIKE '%$search%' OR b_author LIKE '%$search%' OR b_keywords LIKE '%$search%'";
             $result=mysqli_query($dbConection,$selectCmd);
             if(mysqli_num_rows($result)>0){
-                echo "<table border='3'><thead><tr><th>Book</th><th>Book Description</th><th>Book Price</th><th>Likes</th></tr></thead><tbody>";
+                echo "<table><thead><tr><th>Book</th><th>Book Description</th><th>Book Price</th><th>Likes</th></tr></thead><tbody>";
                 while($row=mysqli_fetch_assoc($result)){
                     echo "<tr><td>".$row['b_title']."</br>By: ".$row['b_author']."</td>";
                     echo "<td>".$row['b_description']."</td>";
@@ -35,7 +27,7 @@
             $selectCmd = "SELECT * FROM books_tb";
             $result=mysqli_query($dbConection,$selectCmd);
             if(mysqli_num_rows($result)>0){
-                echo "<table border='3'><thead><tr><th>Book</th><th>Book Description</th><th>Book Price</th><th>Likes</th></tr></thead><tbody>";
+                echo "<table><thead><tr><th>Book</th><th>Book Description</th><th>Book Price</th><th>Likes</th></tr></thead><tbody>";
                 while($row=mysqli_fetch_assoc($result)){
                     echo "<tr><td>".$row['b_title']."</br>By: ".$row['b_author']."</td>";
                     echo "<td>".$row['b_description']."</td>";
@@ -46,3 +38,4 @@
             }
         }
     ?>
+</main>
