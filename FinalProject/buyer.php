@@ -1,9 +1,10 @@
 <?php
-    $dbcon = mysqli_connect("localhost","root","","books_db");
+$dbcon = mysqli_connect("localhost", "root", "", "books_db");
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,15 +13,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
     <title>Buyer Page</title>
 </head>
+
 <body>
     <?php
-        function component($productName, $authorName,$price,$productDetails, $sourceImg, $productid){
+    function component($productName, $authorName, $price, $productDetails, $sourceImg, $productid)
+    {
         $element = "
                 <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
                     <form action=\"buyer.php\" method=\"POST\">
                         <div>
                             <div>
-                                <img src=\"$sourceImg\" alt=\"Image1\" class=\"img-fluid card-img-top\">
+                                <img src=$sourceImg alt=\"Image1\" class=\"img-fluid card-img-top\">
                             </div>
                             <div>
                                 <h5>$productName</h5>
@@ -39,9 +42,10 @@
                 </div>
         ";
         echo $element;
-        }
-        function cartElement($sourceImg, $productName,$authorName, $price, $productid){
-            $element = "
+    }
+    function cartElement($sourceImg, $productName, $authorName, $price, $productid)
+    {
+        $element = "
                     <form action=\"cart.php?action=remove&id=$productid\" method=\"POST\" class=\"cart-items\">
                         <div class=\"border rounded\">
                             <div class=\"row bg-white\">
@@ -66,34 +70,28 @@
                         </div>
                     </form>
             ";
-            echo  $element;
-        }
+        echo $element;
+    }
+    $connection = mysqli_connect('localhost', 'root', '', 'books_db');
 
-        component(productName:"$productName",authorName:"$authorName",price:"$price",productDetails:"$productDetails",sourceImg:"/FinalProject/BookImages/book-1.jpg",productid:"");
+    $SelectCmd = "SELECT * FROM books_tb";
+    $result = $dbcon->query($SelectCmd);
 
-        $dbcon = mysqli_connect("localhost","root","","books_db");
-        if($dbcon->connect_error){
-            die("Connection error");
-        }else{
-            $selectCmd = "SELECT * FROM books_tb";
-            $result = $dbcon->query($selectCmd);
-            $users = [];
-            while($row = $result->fetch_assoc()){
-                echo "<tr>";
-                    echo "<td>".$row['user_id']."</td>";
-                    echo "<td>".$row['firstName']." ".$row['lastName']."</td>";
-                    echo "<td>".$row['email']."</td>";
-                    echo "<td>".$row['dob']."</td>";
-                    echo "<td>".$row['phone']."</td>";
-                    echo "<td><a class='btn' href='".$_SERVER['PHP_SELF']."?id=".$row['user_id']."&action=del'>Delete</a></td>";
-                    echo "<td><a class='btn' href='".$_SERVER['PHP_SELF']."?id=".$row['user_id']."&action=edit'>Edit</a></td>";
-                echo "</tr>";
-            }
-            $dbcon->close();
-        }
+    echo "<table>";
+
+    while ($row = mysqli_fetch_array($result)) {
+        // component($productName,$authorName,$productDetails,$price,$sourceImg,$productid);
+        echo "<tr><td>" . $row['productName'] . "</td><td>" . $row['authorName'] . "</td><td>" . $row['productDetails'] . "</td><td>$" . $row['price'] . "</td><td><img src='" . $row['sourceImg'] . "' alt=\"Image1\" class=\"img-fluid\"></td></tr>";
+    }
+
+    echo "</table>";
+
+    $dbcon->close();
+    // component("ikigai","Francesc Miralles and Hector Garcia",200,"something",'./BookImages/book-1.webp',1);
     ?>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
+
 </html>
