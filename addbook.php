@@ -15,38 +15,49 @@
 </head>
 <body>
     <form  method='POST' action="<?php echo $_SERVER['PHP_SELF'];?>">
-        <input type="text" name="b_name" placeholder="Book name" require/>
+        <input type="text" name="b_title" placeholder="Book name" require/>
+        <input type="text" name="b_author" placeholder="Author" require/>
         <textarea name="b_description" placeholder="Book description" require></textarea>
+        <input type="text" name="b_price" placeholder="Price" require/>
         <textarea name="b_keywords" placeholder="Keywords associated to your book" require></textarea>
         <input type="hidden" name="b_likes" value="0">
         <button type="submit">Post a book</button>
     </form>
     <?php
         if($_SERVER["REQUEST_METHOD"]=="POST"){
+
             //making my life easier
+
             $b_title = $_POST['b_title'];
-            $b_descrip = $_POST['b_description'];
+            $b_author = $_POST['b_author'];
+            $b_description = $_POST['b_description'];
+            $b_p = (Float)$_POST['b_price'];
+            $b_pri = floatval($b_p);
+            $b_price = round($b_pri,2);
             $b_keywords = $_POST['b_keywords'];
             $b_likes = (Int)$_POST['b_likes'];
+
             //making the connection
+
             $dbCon = new mysqli($dbServername,$dbUsername,$dbPass,$dbName);
             if($dbCon->connect_error){
-                die("Connection error ");
+                die("Connection error");
             }else{
+                
                 //if the connection is succesfull insert this data into the databse
-               if($b_name!=""){
-                $insertCmd = "INSERT INTO books_tb (b_title,b_author,b_description,b_price,b_keywords,b_likes) VALUES ('$b_title','$b_author',$b_descrip','$b_keywords',$b_likes)";
+               if($b_title!="" && $b_author!="" && $b_description!="" && $b_keywords!=""){
+                $insertCmd = "INSERT INTO books_tb (b_title,b_author,b_price,b_description,b_keywords,b_likes) VALUES ('$b_title','$b_author',".(Float)$b_price.",'$b_description','$b_keywords',".(Int)$b_likes.")";
                 $result = $dbCon->query($insertCmd);
                 if($result === true){
-                    echo '<h1 style="color: green;">Your book, "'.$b_name.'", has been registered</h1>';
+                    echo '<h1 style="color: green;">Your book, "'.$b_title.'", has been registered</h1>';
                     // $addr = "http://localhost/teamProject/like.php";
                     // header("Location: $addr");
                 }else{
-                    echo '<h1 style="color: red;">Unable to register your book: "'.$b_name.'"</h1>';
+                    echo '<h1 style="color: red;">Unable to register your book: "'.$b_title.'"</h1>';
                 }
                 $dbCon->close();
                }else{
-                    echo "<p style='color:red;'>Please check the name of your book";
+                    echo "<p style='color:red;'>Please be sure to fill all the inputs";
                }
             }
         }
