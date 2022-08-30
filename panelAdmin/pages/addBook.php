@@ -15,21 +15,20 @@
         if($_SERVER["REQUEST_METHOD"]=="POST"){
 
             //making my life easier
-            $b_title = $_POST['b_title'];
-            $b_author = $_POST['b_author'];
-            $b_description = $_POST['b_description'];
-            $b_p = (Float)$_POST['b_price'];
-            $b_pri = floatval($b_p);
-            $b_price = round($b_pri,2);
-            $b_keywords = $_POST['b_keywords'];
-            $b_likes = (Int)$_POST['b_likes'];
+            $b_title = htmlspecialchars($_POST['b_title']);
+            $b_author = htmlspecialchars($_POST['b_author']);
+            $b_description = htmlspecialchars($_POST['b_description']);
+            $b_p = htmlspecialchars((Float)$_POST['b_price']);
+            $b_pri = htmlspecialchars(floatval($b_p));
+            $b_price = htmlspecialchars(round($b_pri,2));
+            $b_keywords = htmlspecialchars($_POST['b_keywords']);
+            $b_likes = ((Int)$_POST['b_likes']);
 
             //making the connection
-
             if($dbConection->connect_error){
                 die("Connection error");
             }else{
-                //if the connection is succesfull insert this data into the databse
+                //if the connection is successful and if the inputs were filled, insert this data into the databse
                if($b_title!="" && $b_author!="" && $b_description!="" && $b_keywords!=""){
                 $insertCmd = "INSERT INTO books_tb (b_title,b_author,b_price,b_description,b_keywords,b_likes) VALUES ('".$b_title."','".$b_author."','".(Float)$b_price."','".$b_description."','".$b_keywords."','".(Int)$b_likes."')";
                 $result = $dbConection->query($insertCmd);
