@@ -1,6 +1,3 @@
-<?php
-    include "../config.php";
-?>
 <main>
     <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>" enctype="multipart/form-data">
         <input name="productName" placeholder="Enter product name" required/>

@@ -1,6 +1,6 @@
 <?php
     include './config.php';
-    
+    session_unset();
     $loginError = 'noshow';
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         $username = $_POST['username'];
@@ -9,16 +9,18 @@
             die("Connection error");
         }
         else{
-            $selectCmd = "SELECT * FROM `user_tb` WHERE username='$username';";
+            $selectCmd = "SELECT * FROM user_tb WHERE username='$username';";
             $result = $dbConection->query($selectCmd);
             if($result-> num_rows > 0){
                 $user = $result -> fetch_assoc();
                 $hashedPass = $user['password'];
                 if(password_verify($password,$hashedPass)){
                     if($user['title'] == 'admin'){
+                        $_SESSION['username'] = $username;
                         header("location:panelAdmin/");
                     }
                     else{
+                        $_SESSION['username'] = $username;
                         header("location:panelUser/");
                     }
                 }
@@ -58,10 +60,10 @@
                     <input type="password" name="password" placeholder="Type your password" />
                 </div>
                 <p class="error <?php echo $loginError ?>">*username/password invalid</p>
-                <div class="checkbox">
+                <!-- <div class="checkbox">
                     <input type="checkbox" />
                     <label>Remember Me</label>
-                </div>
+                </div> -->
                 <button type="submit">Log in</button>
                 <div class="reg">
                     <p>Not a member?</p>

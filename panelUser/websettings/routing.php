@@ -6,8 +6,8 @@
             array_push($pageArray,basename($page,'.php'));
         }
     }
-    $reqURL = $_SERVER['REQUEST_URI'];
-    if($reqURL == "/panelUser/" || $reqURL == "/panelUser"){
+    $reqURL = strtolower(parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH));
+    if($reqURL == "/paneluser/" || $reqURL == "/paneluser"){
         $page = "home";
     }else{
         $page = basename($reqURL);

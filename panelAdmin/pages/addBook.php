@@ -1,8 +1,5 @@
-<?php
-    include '../config.php';
-?>
 <main>
-    <form  method='POST' action='<?php echo "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/addBook";?>'>
+    <form  method='POST' action='<?php echo parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);?>'>
         <input type="text" name="b_title" placeholder="Book name" require/>
         <input type="text" name="b_author" placeholder="Author" require/>
         <textarea name="b_description" placeholder="Book description" require></textarea>

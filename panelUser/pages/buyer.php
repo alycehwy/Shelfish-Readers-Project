@@ -1,6 +1,3 @@
-<?php
-    include "../config.php";
-?>
 <main>
     <?php
         function component($productName, $authorName, $price, $productDetails, $sourceImg, $productid){

@@ -1,8 +1,5 @@
-<?php
-    include "../config.php";
-?>
 <main>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+    <form  method='POST' action='<?php echo parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);?>'>
         <input type="search" name="search" required/>
         <input type="submit" name="submit" value='Search' required/>
     </form>

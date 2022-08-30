@@ -32,8 +32,8 @@
                         $insertCmd = "INSERT INTO user_tb (username, password, first_name, last_name, email, title) VALUES ('".$username."', '".$password."', '".$firstName."', '".$lastName."', '".$email."','user')";
                         $result = $dbConection-> query($insertCmd);
                         if($result === true){
-                            echo "<h1 style ='color: green;'>Register success!</h1>";
-                            // header("Location: http://localhost/PHP/Final/");
+                            echo "<script>alert('Register Success')</script>";
+                            header("Refresh:0.01; url=http://localhost/", true);
                         }else{
                             echo "<h1 style ='color: red;'>".$dbConection->error."</h1>";
                         }
@@ -58,17 +58,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="register">
     <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
         <fieldset>
             <legend>Register Infomation</legend>
             <div class="registerInfo">
-                <label>Username: </label>
+               <label>Username: </label>
                 <input type="text" name="username" placeholder="username" required/>
                 <label>Password: </label>
                 <input type="password" name="password" placeholder="Password" required/>
-                
                 <label>Confirm Password: </label>
                 <input type="password" name="cPassword" placeholder="Confirm Password" required/>
                 <label>First Name: </label>
@@ -81,7 +82,8 @@
             <p class="error <?php echo $userError ?>">*Username already existed</p>
             <p class="error <?php echo $pwValid ?>">*Password should be at least 8 characters in length and include at least one upper case letter, one number, and one special character</p>
             <p class="error <?php echo $pwError ?>">*Password mismatch</p>
-            <button type="submit">Register</button>
+            <button type="button" class="btn btn-primary"><a href='<?php echo "/"; ?> '>Back to Login</a></button>
+            <button type="submit" class="btn btn-primary">Register</button>
         </fieldset>
     </form>
 </body>
