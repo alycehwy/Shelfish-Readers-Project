@@ -13,9 +13,9 @@
         <h1>Header</h1>
         <nav>
             <a href="./">Home</a>
-            <a href="./books">All Books</a>
-            <a href="./prevRec">Previous Record</a>
-            <a href="./currentBrw">Current Borrow</a>
+            <a href="./books">Books</a>
+            <a href="./curBrw">Current Borrow</a>
+            <a href="./brwrec">Borrowed Record</a>
             <a href="./buyer">Buy second-hand books</a>
             <a href="./seller">Sell second-hand books</a>
             <a href="./donate">Donate</a>

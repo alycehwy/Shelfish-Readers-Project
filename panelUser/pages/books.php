@@ -7,13 +7,25 @@
         else{
             switch($_GET['action']){
                 case "borrow":
-                    $selectuser = "SELECT * FROM user_tb WHERE user_id = $id";
-                    $result = $dbConection -> query($selectuser);
-                    $_SESSION['userData'] = $result->fetch_assoc();
-                    header("Location: edituser");
-
+                    $username = $_SESSION['username'];
+                    if($dbConection->connect_error){
+                        die("Connection error");
+                    }
+                    else{
+                        $selectCmd = "SELECT * FROM user_tb WHERE username = '$username' AND title = 'user'";
+                        $resultSelect = $dbConection->query($selectCmd);
+                        $row = $resultSelect->fetch_assoc();
+                        $user_id = $row['user_id'];
+                    }
+                    $insertCmd = "INSERT INTO borrow_tb (status,b_id,user_id) VALUES ('requsting','".$id."','".$user_id."')";
+                    $result = $dbConection->query($insertCmd);
+                    if($result === true){
+                        echo "<script>alert('Send the borrow request success')</script>";;
+                    }else{
+                        echo '<h1 style="color: red;">Unable to borrow the book"</h1>';
+                    }
+                    break;
             }
-            $dbConection->close();
         }
     }
 ?>
@@ -35,7 +47,8 @@
                     echo "<td>".$row['b_price']."CAD</td>";
                     echo "<td>".$row['b_likes']."</td></tr>";
                 }
-            echo "</tbody></table>";
+                echo "</tbody></table>";
+                $dbConection->close();
             }else{
             echo "No book found";
             }
@@ -52,6 +65,7 @@
                     echo "<td><a class='btn btn-success' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=borrow'>Borrow</a></td></tr>";
                 }
                 echo "</tbody></table>";
+                $dbConection->close();
             }
         }
     ?>
