@@ -15,9 +15,14 @@
             <a href="./">Home</a>
             <a href="./manager">Manager User</a>
             <a href="./books">Books</a>
-            <a href="./addbook">Add Book</a>
-            <a href="./request">Book Request</a>
-            <a href="./currentbrw">Current Borrow</a>
+            <a href="./addbook">Add New Book</a>
+            <a href="./reqbrw">Borrow Request</a>
+            <a href="./reqextend">Extend Request</a>
+            <a href="./reqreturn">Return Request</a>
+            <a href="./curbrw">Current Borrow</a>
+            <a href="./brwrec">Borrowed Record</a>
+            <a href="./manager">Manager Seller Post</a>
+            <a href="./manager">Manager Buyer</a>
             <a href="../">Log Out</a>
         </nav>
     </header>
