@@ -19,30 +19,28 @@ $dbcon = mysqli_connect("localhost", "root", "", "books_db");
     function component($productName, $authorName, $price, $productDetails, $sourceImg, $productid)
     {
         $element = "
-                <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
-                    <form action=\"buyer.php\" method=\"POST\">
-                        <div>
-                            <div>
-                                <img src=$sourceImg alt=\"Image1\" class=\"img-fluid card-img-top\">
-                            </div>
-                            <div>
-                                <h5>$productName</h5>
-                                <h6>$authorName</h6>
-                                <p>
-                                    $productDetails
-                                </p>
-                                <h5>
-                                    <span>$$price</span>
-                                </h5>
-                                <button type=\"submit\" name=\"add\">Add to Cart</button>
-                                <input type='hidden' name='product_id' value='$productid'>
-                            </div>
+                <div class=\"card mb-3 " ."style=\"max-width: 540px;"."\>
+                    <div class=\"row g-0\">
+                        <div class=\"col-md-4\">
+                            <img src=$sourceImg class=\"img-thumbnail rounded-start" ."style=\"max-width: 70%;"."\">
                         </div>
-                    </form>
+                        <div class=\"col-md-8\">
+                            <div class=\"card-body\">
+                                <h5 class=\"fs-1 fw-bold card-title\">$productName</h5>
+                                <h6 class=\"fs-3 fw-normal\">$authorName</h6>
+                                <p class=\"fs-5 fw-lighter card-text\">$productDetails</p>
+                                <h5><span>$$price</span></h5>
+                                <p class=\"card-text font-monospace\"><small class=\"text-muted\">updated a few seconds ago.</small></p>
+                            </div>
+                            <button class=\"btn text-white bg-primary bg-gradient border mx-3\" type=\"submit\" name=\"add\">Add to Cart</button>
+                        </div>
+                    </div>
+                    <input type='hidden' name='product_id' value='$productid'>
                 </div>
         ";
         echo $element;
     }
+
     function cartElement($sourceImg, $productName, $authorName, $price, $productid)
     {
         $element = "
@@ -50,7 +48,7 @@ $dbcon = mysqli_connect("localhost", "root", "", "books_db");
                         <div class=\"border rounded\">
                             <div class=\"row bg-white\">
                                 <div class=\"col-md-3 pl-0\">
-                                    <img src=$sourceImg alt=\"Image1\" class=\"img-fluid\">
+                                    <img src=$sourceImg class=\"img-fluid\">
                                 </div>
                                 <div class=\"col-md-6\">
                                     <h5 class=\"pt-2\">$productName</h5>
@@ -77,17 +75,14 @@ $dbcon = mysqli_connect("localhost", "root", "", "books_db");
     $SelectCmd = "SELECT * FROM books_tb";
     $result = $dbcon->query($SelectCmd);
 
-    echo "<table>";
-
-    while ($row = mysqli_fetch_array($result)) {
-        // component($productName,$authorName,$productDetails,$price,$sourceImg,$productid);
-        echo "<tr><td>" . $row['productName'] . "</td><td>" . $row['authorName'] . "</td><td>" . $row['productDetails'] . "</td><td>$" . $row['price'] . "</td><td><img src='" . $row['sourceImg'] . "' alt=\"Image1\" class=\"img-fluid\"></td></tr>";
+    while($row = mysqli_fetch_array($result)){
+        echo component($row['productName'],$row['authorName'],$row['price'],$row['productDetails'],$row['sourceImg'],$row['productDetails']);
     }
 
-    echo "</table>";
-
+    // while($row = mysqli_fetch_array($result)){
+    //     echo cartElement($row['productName'],$row['authorName'],$row['price'],$row['productDetails'],$row['sourceImg'],$row['productDetails']);
+    // }
     $dbcon->close();
-    // component("ikigai","Francesc Miralles and Hector Garcia",200,"something",'./BookImages/book-1.webp',1);
     ?>
 
     <!-- JavaScript Bundle with Popper -->
