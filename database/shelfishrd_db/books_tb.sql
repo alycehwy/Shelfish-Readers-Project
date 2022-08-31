@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2022 at 08:04 PM
+-- Generation Time: Aug 31, 2022 at 11:24 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `books_tb` (
-  `b_id` tinyint(150) NOT NULL,
+  `b_id` tinyint(11) NOT NULL,
   `b_title` varchar(50) NOT NULL,
   `b_author` varchar(50) NOT NULL,
   `b_price` float NOT NULL,
@@ -42,11 +42,14 @@ CREATE TABLE `books_tb` (
 --
 
 INSERT INTO `books_tb` (`b_id`, `b_title`, `b_author`, `b_price`, `b_description`, `b_keywords`, `b_likes`) VALUES
-(1, 'book 1', 'marcelo', 2.99, 'description of book 1 ', 'css, terror, magic ', 0),
+(1, 'book 1', 'marcelo', 2.99, 'description of book 1 ', 'css, terror', 0),
 (2, 'book 2', 'Sam', 44.1, 'the description of books 2 is a bit longer and yeah this is it ', 'css, technology, fantasy', 0),
 (13, 'book 3 ', 'Wun-Yu', 10, 'description of book 3', 'css, magic', 0),
 (14, 'book 4', 'Milad', 99.9, 'fourth book description so far', 'key, keywords', 0),
-(15, 'book five ', 'Henry', 3.53, 'description of the fifth book', 'book, five, book five', 0);
+(15, 'book five ', 'Henry', 3.53, 'description of the fifth book', 'book, five, book five', 0),
+(16, 'Web', 'Milad', 23.99, 'Be a great Web Developer', 'web,css,html', 0),
+(17, 'PHP', 'Milad', 13.99, 'Backend developer', 'php,web', 0),
+(19, 'JavaScript', 'Milad', 49.99, 'Be a good student', 'javascript', 0);
 
 --
 -- Indexes for dumped tables
@@ -66,7 +69,7 @@ ALTER TABLE `books_tb`
 -- AUTO_INCREMENT for table `books_tb`
 --
 ALTER TABLE `books_tb`
-  MODIFY `b_id` tinyint(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `b_id` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

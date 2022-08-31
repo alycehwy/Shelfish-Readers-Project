@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2022 at 08:25 PM
+-- Generation Time: Aug 31, 2022 at 11:24 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `student_database`
+-- Database: `shelfishrd_db`
 --
 
 -- --------------------------------------------------------
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `book_b&s_tb` (
-  `productid` int(11) NOT NULL,
+  `productid` tinyint(11) NOT NULL,
   `productName` varchar(250) NOT NULL,
   `authorName` varchar(250) NOT NULL,
   `productDetails` varchar(1000) NOT NULL,
@@ -66,7 +66,7 @@ ALTER TABLE `book_b&s_tb`
 -- AUTO_INCREMENT for table `book_b&s_tb`
 --
 ALTER TABLE `book_b&s_tb`
-  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `productid` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
