@@ -3,7 +3,7 @@
     
     $pwError = 'noshow';
     $pwValid = 'noshow';
-    $userError = 'noshow';
+    $userError = 'show';
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -35,7 +35,7 @@
                             echo "<script>alert('Register Success')</script>";
                             header("Refresh:0.01; url=http://localhost/", true);
                         }else{
-                            echo "<h1 style ='color: red;'>".$dbConection->error."</h1>";
+                            echo "<script>alert('.$dbConection->error.')</script>";
                         }
                     }
                     else{   
@@ -82,8 +82,10 @@
             <p class="error <?php echo $userError ?>">*Username already existed</p>
             <p class="error <?php echo $pwValid ?>">*Password should be at least 8 characters in length and include at least one upper case letter, one number, and one special character</p>
             <p class="error <?php echo $pwError ?>">*Password mismatch</p>
-            <button type="button" class="btn btn-primary"><a href='<?php echo "/"; ?> '>Back to Login</a></button>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <div class="registerBtn">
+                <button type="button" class="btn btn-secondary"><a href='<?php echo "/"; ?> '>Back</a></button>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
         </fieldset>
     </form>
 </body>

@@ -8,15 +8,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 .loginPage header{
-    padding: 3%;
+    padding: 2%;
     font-size: 24px;
 }
 
 .loginPage footer{
-    padding: 3%;
+    padding: 1.5%;
 }
 
 .login{
@@ -26,8 +27,14 @@
     align-items: center;
 }
 
+.loginPage h1{
+    font-size: 60px;
+    padding-top: 2%;
+}
+
 .login form{
     width: 28%;
+    padding: 2% 0% 5% 0%;
 }
 
 .login fieldset{
@@ -35,17 +42,7 @@
     flex-direction: column;
     align-items: center;
     row-gap: 20px;
-    padding: 5%;
-}
-
-.login legend{
-    font-size: 48px;
-    font-weight: 600;
-    padding: 0% 5% 0% 5%;
-}
-
-.login button{
-    padding: 2%;
+    padding: 10%;
 }
 
 .info{
@@ -92,7 +89,6 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-top: 2%;
 }
 
 .register form{
@@ -104,19 +100,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 30px;
-    padding: 5%;
+    row-gap: 15px;
+    padding: 3%;
 }
 
 .register legend{
-    font-size: 48px;
+    font-size: 46px;
     font-weight: 600;
-    padding: 0% 5% 0% 5%;
+    text-align: center;
 }
-
-.register button{
-    width: 15%;
-    padding: 1%;
+.register p{
+    text-align: center;
 }
 
 .registerInfo{
@@ -133,8 +127,17 @@
 }
 
 .registerInfo input{
-    padding: 1.5%;
+    padding: 1%;
     width: 65%;
 }
 
+.registerBtn{
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+}
 
+.registerBtn a{
+    text-decoration: none;
+    color: white;
+}

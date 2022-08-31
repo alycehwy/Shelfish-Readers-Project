@@ -12,17 +12,16 @@
         if($_SERVER["REQUEST_METHOD"]=="POST"){
 
             //making my life easier
-            $b_title = $_POST['b_title'];
-            $b_author = $_POST['b_author'];
-            $b_description = $_POST['b_description'];
-            $b_p = (Float)$_POST['b_price'];
-            $b_pri = floatval($b_p);
-            $b_price = round($b_pri,2);
-            $b_keywords = $_POST['b_keywords'];
-            $b_likes = (Int)$_POST['b_likes'];
+            $b_title = htmlspecialchars($_POST['b_title']);
+            $b_author = htmlspecialchars($_POST['b_author']);
+            $b_description = htmlspecialchars($_POST['b_description']);
+            $b_p = htmlspecialchars((Float)$_POST['b_price']);
+            $b_pri = htmlspecialchars(floatval($b_p));
+            $b_price = htmlspecialchars(round($b_pri,2));
+            $b_keywords = htmlspecialchars($_POST['b_keywords']);
+            $b_likes = ((Int)$_POST['b_likes']);
 
             //making the connection
-
             if($dbConection->connect_error){
                 die("Connection error");
             }else{
@@ -31,15 +30,13 @@
                 $insertCmd = "INSERT INTO books_tb (b_title,b_author,b_price,b_description,b_keywords,b_likes) VALUES ('".$b_title."','".$b_author."','".(Float)$b_price."','".$b_description."','".$b_keywords."','".(Int)$b_likes."')";
                 $result = $dbConection->query($insertCmd);
                 if($result === true){
-                    echo '<h1 style="color: green;">Your book, "'.$b_title.'", has been registered</h1>';
-                    // $addr = "http://localhost/teamProject/like.php";
-                    // header("Location: $addr");
+                    echo "<script>alert('".$b_title."', register Success')</script>";  
                 }else{
-                    echo '<h1 style="color: red;">Unable to register your book: "'.$b_title.'"</h1>';
+                    echo "<script>alert('Action failed')</script>";
                 }
                 $dbConection->close();
                }else{
-                    echo "<p style='color:red;'>Please be sure to fill all the inputs";
+                    echo "<script>alert('All data should be filled')</script>";;
                }
             }
         }

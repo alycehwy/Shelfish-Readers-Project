@@ -8,22 +8,22 @@
             switch($_GET['action']){
                 case "accept":
                     $startDate = date("Y-m-d");
-                    $dueData = date("Y-m-d",strtotime($startDate)+30*86400);
-                    $updateCmd = "UPDATE borrow_tb SET issue_date = '".$startDate."', due_date = '".$dueData."', due_days = '30' ,status = 'borrowed'  WHERE borrow_id = $borrow_id";
+                    $expiryDate = date("Y-m-d",strtotime($startDate)+30*86400);
+                    $updateCmd = "UPDATE borrow_tb SET issue_date = '".$startDate."', expiry_date = '".$expiryDate."' ,status = 'borrowing' WHERE borrow_id = $borrow_id";
                     $result = $dbConection-> query($updateCmd);
                     if($result === true){
                         echo "<script>alert('Accept the Request')</script>";
                     }else{
-                        echo "<h1 style ='color: red;'>".$dbConection->error."</h1>";
+                        echo "<script>alert('Action failed')</script>";
                     }
                     break;
                 case "reject":
-                    $updateCmd = "UPDATE borrow_tb SET status = 'rejected'  WHERE borrow_id = $borrow_id";
+                    $updateCmd = "UPDATE borrow_tb SET status = 'rejected' WHERE borrow_id = $borrow_id";
                     $result = $dbConection-> query($updateCmd);
                     if($result === true){
                         echo "<script>alert('Reject the Request')</script>";
                     }else{
-                        echo "<h1 style ='color: red;'>".$dbConection->error."</h1>";
+                        echo "<script>alert('Action failed')</script>";
                     }
 
             }
@@ -54,7 +54,6 @@
                 else{
                     $bookSelect = "SELECT * FROM borrow_tb INNER JOIN books_tb ON borrow_tb.b_id = books_tb.b_id INNER JOIN user_tb ON borrow_tb.user_id = user_tb.user_id";
                     $result = $dbConection->query($bookSelect);
-                    $row = $result->fetch_assoc();
                     while($row = $result->fetch_assoc()){
                         if($row['status'] == 'requesting'){
                             echo "<tr>";

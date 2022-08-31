@@ -22,7 +22,7 @@
                     if($result === true){
                         echo "<script>alert('Send the borrow request success')</script>";;
                     }else{
-                        echo '<h1 style="color: red;">Unable to borrow the book"</h1>';
+                        echo "<script>alert('Action failed')</script>";
                     }
                     break;
             }
@@ -53,6 +53,18 @@
             echo "No book found";
             }
         }else{
+            $selectUser = "SELECT * FROM user_tb WHERE username = '".$_SESSION['username']."' AND title = 'user'";
+            $resultUser = $dbConection->query($selectUser);
+            $rowUser = $resultUser->fetch_assoc();
+            $user_id = $rowUser['user_id'];
+            $borrowList = [];
+            $borrowCmd = "SELECT * FROM borrow_tb WHERE user_id = '$user_id'";
+            $resultborrow = $dbConection->query($borrowCmd);
+            while($rowborrow = $resultborrow->fetch_assoc()){
+                if($rowborrow['user_id'] == $user_id){
+                    array_push($borrowList,$rowborrow['b_id']);
+                }
+            }
             $selectCmd = "SELECT * FROM books_tb";
             $result=mysqli_query($dbConection,$selectCmd);
             if(mysqli_num_rows($result)>0){
@@ -62,7 +74,12 @@
                     echo "<td>".$row['b_description']."</td>";
                     echo "<td>".$row['b_price']."CAD</td>";
                     echo "<td>".$row['b_likes']."</td>";
-                    echo "<td><a class='btn btn-success' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=borrow'>Borrow</a></td></tr>";
+                    if(in_array($row['b_id'],$borrowList)){
+                        echo "<td><a class='btn btn-success disabled' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=borrow' disable>Borrowing</a></td></tr>";
+                    }
+                    else{
+                        echo "<td><a class='btn btn-primary' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=borrow'>Borrow</a></td></tr>";
+                    }
                 }
                 echo "</tbody></table>";
                 $dbConection->close();
