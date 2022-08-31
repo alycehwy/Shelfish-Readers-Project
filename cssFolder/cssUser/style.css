@@ -1,0 +1,218 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+:root{
+    --headerHeight: 20vh;
+    --paddingContent: 0 10vw;
+}
+
+html{
+    font-size: 16px;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 1vh;
+    background-color: whitesmoke;
+}
+
+/* Header */
+header{
+    width: 100vw;
+    min-height: var(--headerHeight);
+    background-image: linear-gradient(to left, royalblue,skyblue 30%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    isolation: isolate;
+}
+
+/* Side NavBar */
+nav{
+    position: fixed;
+    background-image: linear-gradient(skyblue 30%,royalblue);
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    row-gap: 4vh;
+    height: 100vh;
+    width: 11vw;
+}
+nav > a{
+
+    color: white;
+    text-shadow: 1px 1px 5px black;
+    text-decoration: none;
+    font-size: 1.15rem;
+    transition: .3s;
+}
+nav > a:hover{
+    text-shadow: 1px 1px 4px gainsboro;
+    color: transparent;
+    text-shadow: 1px 1px white;
+
+}
+
+/* All h1s */
+h1{
+    font-size: 2.5em;
+    color: white;
+    position: relative;
+    text-shadow: 1px 1px 5px black;
+
+}
+
+/* Main Content */
+main{
+    padding: var(--paddingContent);
+    display: grid;
+    place-content: center;
+    row-gap: 5px;
+}
+
+/* Footer */
+footer{
+    padding: var(--paddingContent);  
+    text-align: center;
+    font-size: .85rem;
+
+}
+
+/* Table to search books */
+table{
+  border-collapse: collapse;
+  border: 1px solid black;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+thead{
+    background-color: darkgray;
+}
+table tr{
+    border-bottom: 1px solid black;
+}
+tr:nth-child(even){
+    background-color: gainsboro;
+}
+table > thead > tr > th,
+table > tbody > tr > td{
+    border-left: 1px solid black;
+    padding: .25em;
+}
+.search,.search-submit{
+    padding: .5em;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px black;
+}
+
+/* Inputs to upload a book */
+.addbook {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 2%;
+    width: 30vw;
+    gap: 10px;
+}
+
+.addbook :is(input,textarea,button) {
+    padding: 1em .5em;
+    resize: none;
+    border-radius: 5px;
+    width: 48%;
+    border: 1px solid black;
+}
+
+.addbook :is(button){
+    width: 100%;
+}
+
+.addbook :is(.descrip){
+    width: 100%;
+}
+
+/* Home page */
+figure{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vh;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.user-img{
+    width: 20vh;
+    height: 20vh;
+    margin: 5px;
+}
+.user-p,
+.user-edit{
+    width: 100%;
+}
+
+/* isolated h1's for not yet made pages */
+.h1{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Borrow th */
+.borrow {
+    text-align: center;
+}
+
+/* file upload input for sellers */
+.addbook :is(.browse){
+    position: absolute;   
+    right: 13%; 
+    border: 1px solid black;
+    width: fit-content;
+    height: 9.5vh;
+}
+.addbook :is(.descrip){
+    width: 48%;
+}.addbook :is(button){
+    width: 48%;
+}
+
+/* Donate page */
+.donate > form {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1%;
+    position: absolute;
+    width: fit-content;
+    right: 35%;
+    bottom: 10%;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.donate fieldset {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.donate .donateInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.donateInfo > * {
+    padding: .25em;
+}
+
