@@ -1,4 +1,199 @@
 *{
-    margin: 0;
-    padding: 0;
+    margin: 0%;
+    padding: 0%;
+    font-family: sans-serif;
+    background-color: gainsboro;
+}
+
+header div{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+}
+
+header a{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
+
+header h1{
+    display: flex;
+    width: 70%;
+    justify-content: flex-end;
+    font-size: 60px;
+    font-weight: 600;
+    padding: 1.5%;
+    text-shadow: shadow1, shadow2, shadow3;
+    text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
+}
+
+main{
+    display: flex;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.navigation{
+    width: 28%;
+    padding: 0% 3%;
+    background-color: gainsboro;
+}
+
+.navigation a{
+    text-align: center;
+}
+
+.navi{
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 1.5vh;
+    border: 1px solid gray;
+    padding: 8%;
+}
+
+.main_content{
+    width: 72%;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    border: 1px solid gray;
+    border-top-left-radius: 10px 100px;
+    border-width: 2px 3px 2px 5px;
+    border-radius: 90% 6% 93% 5% / 5% 94% 7% 95%;
+    transform: rotate(2deg);
+}
+
+.home_body, .manager_body, .books_body, .editbook_body, .edituser_body, .addbook_body, .reqbrw_body, .reqextend_body, .reqreturn_body, .curbrw_body, .brwrec_body{
+    transform: rotate(-2deg);
+    height: 100%;
+}
+
+.home_body h3, .manager_body h3, .books_body h3, .editbook_body h3, .edituser_body h3, .addbook_body h3, .reqbrw_body h3, .reqextend_body h3, .reqreturn_body h3, .curbrw_body h3, .brwrec_body h3{
+    text-align: center;
+    padding: 2%;
+    margin: 0%;
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+    font-weight: 600;
+}
+
+.table{
+    text-align: center;
+}
+
+.table td{
+    vertical-align: middle;
+}
+
+/* Home Page */
+.user_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3%;
+}
+
+.user_img{
+    width: 65%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-body p{
+    font-size: 18px;
+}
+
+/* Manager User Page & Books Page */
+.books_body{
+    display: flex;
+    flex-direction: column;
+}
+
+.search{
+    display: flex;
+    column-gap: 10px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2%;
+}
+
+.search p{
+    font-size: 20px;
+    margin: 0%;
+}
+
+.search_bar{
+    padding: 0.5%;
+    width: 30%;
+}
+
+/* Edit Book Page & Edit User Page & Add Book Page */
+.editbook_body, .edituser_body, .addbook_body{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.editbook_body h4,.edituser_body h4{
+    text-align: center;
+    padding: 1%;
+    font-weight: 600;
+    width: 100%;
+}
+
+.editbook_body h4, .edituser_h4{
+    border-bottom: 1px solid gray;
+}
+
+.editbook_body div, .edituser_body div, .addbook_body div{
+    display: flex;
+    width: 90%;
+    align-items: center;
+}
+
+.editbook_body label, .addbook_body label{
+    width: 40%;
+}
+.edituser_body label{
+    width: 25%;
+}
+
+.editbook_body input, .edituser_body input, .addbook_body input, .addbook_body textarea{
+    text-align: center;
+}
+
+.editbook_body form, .edituser_body form, .addbook_body form{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    padding-top: 3%;   
+}
+
+.editbookBtn, .edituserBtn, .addbookBtn{
+    display: flex;
+    justify-content: center;
+    column-gap: 80px;
+    padding-top: 2%;
+}
+
+/* Footer Page */
+footer{
+    padding: 1%;
+    text-align: center;
 }

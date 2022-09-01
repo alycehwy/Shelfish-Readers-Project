@@ -1,5 +1,213 @@
 *{
-    margin: 0;
-    padding: 0;
+    margin: 0%;
+    padding: 0%;
     font-family: sans-serif;
+    background-color: gainsboro;
+}
+
+header div{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+}
+
+header a{
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
+
+header h1{
+    display: flex;
+    width: 70%;
+    justify-content: flex-end;
+    font-size: 60px;
+    font-weight: 600;
+    padding: 1.5%;
+    text-shadow: shadow1, shadow2, shadow3;
+    text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
+}
+
+main{
+    display: flex;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.navigation{
+    width: 28%;
+    padding: 0% 3%;
+    background-color: gainsboro;
+}
+
+.navigation a{
+    text-align: center;
+}
+
+.navi{
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    row-gap: 1.5vh;
+    border: 1px solid gray;
+    padding: 8%;
+}
+
+.main_content{
+    width: 72%;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    border: 1px solid gray;
+    border-top-left-radius: 10px 100px;
+    border-width: 2px 3px 2px 5px;
+    border-radius: 90% 6% 93% 5% / 5% 94% 7% 95%;
+    transform: rotate(2deg);
+}
+
+.main_content_buy{
+    width: 72%;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    border: 1px solid gray;
+}
+
+.home_body, .books_body, .edituser_body, .curbrw_body, .brwrec_body, .sellform_body, .donate_body{
+    transform: rotate(-2deg);
+    height: 100%;
+}
+
+.home_body h3, .books_body h3, .edituser_body h3, .curbrw_body h3, .brwrec_body h3, .sellform_body h3, .donate_body h3, .buyer_body h3{
+    text-align: center;
+    padding: 2%;
+    margin: 0%;
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+             0px 8px 13px rgba(0,0,0,0.1),
+             0px 18px 23px rgba(0,0,0,0.1);
+    font-weight: 600;
+}
+
+/* Home Page */
+.user_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3%;
+}
+
+.user_img{
+    width: 65%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-body p{
+    font-size: 18px;
+}
+
+/* Books Page */
+.table{
+    text-align: center;
+}
+
+.table td{
+    vertical-align: middle;
+}
+
+.books_body{
+    display: flex;
+    flex-direction: column;
+}
+
+.search{
+    display: flex;
+    column-gap: 10px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2%;
+}
+
+.search p{
+    font-size: 20px;
+    margin: 0%;
+}
+
+.search_bar{
+    padding: 0.5%;
+    width: 30%;
+}
+
+/* Edit User Page, Sell Form, Donate Page */
+.edituser_body, .sellform_body, .donate_body{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edituser_body h4{
+    text-align: center;
+    padding: 1%;
+    font-weight: 600;
+    width: 100%;
+}
+
+.edituser_h4{
+    border-bottom: 1px solid gray;
+}
+
+.edituser_body div, .sellform_body div, .donate_body div{
+    display: flex;
+    width: 90%;
+    align-items: center;
+}
+
+.edituser_body label{
+    width: 25%;
+}
+
+.sellform_body label, .donate_body label{
+    width: 45%;
+}
+
+.edituser_body input, .sellform_body input, .donate_body input{
+    text-align: center;
+}
+
+.edituser_body form, .sellform_body form, .donate_body form{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    padding-top: 3%;   
+}
+
+.edituserBtn, .sellformBtn, .donateBtn,.centerBtn{
+    display: flex;
+    justify-content: center;
+    column-gap: 80px;
+    padding-top: 2%;
+}
+
+/* Buyer Page */
+.buyer_div{
+    padding: 1%;
+}
+
+/* Footer Page */
+footer{
+    padding: 1%;
+    text-align: center;
 }

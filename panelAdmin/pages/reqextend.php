@@ -34,17 +34,19 @@
         }
     }
 ?>
-<main>
-    <section>
-        <table border="1">
+<section class="main_content">
+    <article class="reqextend_body">
+        <h3>Extend Request</h3>
+        <table class="table">
             <thead>
-                <tr>
+                <tr class="table-dark">
                     <th>Borrow #</th>
                     <th>User ID</th>
                     <th>Username</th>
                     <th>Book ID</th>
                     <th>Book Name</th>
                     <th>Book Author</th>
+                    <th>Extend Times</th>
                     <th colspan=2 >Actions</th>
                 </tr>
             </thead>
@@ -59,13 +61,14 @@
                     $result = $dbConection->query($bookSelect);
                     while($row = $result->fetch_assoc()){
                         if($row['status'] == 'extending'){
-                            echo "<tr>";
+                            echo "<tr class='border-secondary'>";
                             echo "<td>".$row['borrow_id']."</td>";
                             echo "<td>".$row['user_id']."</td>";
                             echo "<td>".$row['username']."</td>";
                             echo "<td>".$row['b_id']."</td>";
                             echo "<td>".$row['b_title']."</td>";
                             echo "<td>".$row['b_author']."</td>";
+                            echo "<td>".$row['extend_times']."</td>";
                             echo "<td><a class='btn btn-primary' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?borrow_id=".$row['borrow_id']."&action=accept'>Accept</a></td>";
                             echo "<td><a class='btn btn-danger' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?borrow_id=".$row['borrow_id']."&action=reject'>Reject</a></td>";
                             echo "</tr>";
@@ -77,5 +80,5 @@
             ?>
             </tbody>
         </table>
-    </section>
-</main>
+    </article>
+</section>

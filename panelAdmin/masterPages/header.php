@@ -10,20 +10,36 @@
 </head>
 <body>
     <header>
-        <h1>Header</h1>
-        <nav class="navbar navbar-dark bg-dark">
-            <a href="./">Home</a>
-            <a href="./manager">Manager User</a>
-            <a href="./books">Books</a>
-            <a href="./addbook">Add New Book</a>
-            <a href="./reqbrw">Borrow Request</a>
-            <a href="./reqextend">Extend Request</a>
-            <a href="./reqreturn">Return Request</a>
-            <a href="./curbrw">Current Borrow</a>
-            <a href="./brwrec">Borrowed Record</a>
-            <a href="./manager">Manager Seller Post</a>
-            <a href="./manager">Manager Buyer</a>
-            <a href="../">Log Out</a>
-        </nav>
+        <div>
+            <h1>Shelfish Readers Libaray</h1>
+            <a class="btn btn-secondary" href="../">Log Out</a>
+        </div>
     </header>
-    <hr>
+    <main>
+        <section class="navigation">
+            <nav class="navi">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action" href="./">Home</a>
+                </div>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action" href="./manager">Manager User</a>
+                </div>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action" href="./books">Books</a>
+                    <a class="list-group-item list-group-item-action" href="./addbook">Add New Book</a>
+                </div>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action" href="./reqbrw">Borrow Request</a>
+                    <a class="list-group-item list-group-item-action" href="./reqextend">Extend Request</a>
+                    <a class="list-group-item list-group-item-action" href="./reqreturn">Return Request</a>
+                </div>
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action" href="./curbrw">Current Borrow</a>
+                    <a class="list-group-item list-group-item-action" href="./brwrec">Borrowed Record</a>
+                </div>
+                <!-- <div class="list-group">
+                    <a class="list-group-item list-group-item-action" href="./manager">Manager Seller Post</a>
+                    <a class="list-group-item list-group-item-action" href="./manager">Manager Buyer</a>
+                </div> -->
+            </nav>
+        </section>

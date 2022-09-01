@@ -18,16 +18,11 @@
                         unset($_SESSION['userData']);
                         unset($_SESSION['id']);
                         echo "<script>alert('Edit Success')</script>";  
-                        if($row['title'] == 'admin'){
-                            header("Refresh:0.01; url=http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/", true);
-                        }
-                        else{
-                            header("Refresh:0.01; url=http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/manager", true);
-                        }
+                        header("Refresh:0.01; url=http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/", true);
                     }
                 }
                 else{
-                    echo "<script>alert('All data should be filled')</script>";;
+                    echo "<script>alert('All data should be filled')</script>";
                 }
             }
         ?>
@@ -57,12 +52,7 @@
                     }
                 }
                 echo "<div class='edituserBtn'><button type='submit' class='btn btn-primary'>Update</button>";
-                if($_SESSION['username'] == $_SESSION['userData']['username']){
-                    echo "<a type='button' class='btn btn btn-secondary' href='".dirname($_SERVER['PHP_SELF'])."/'>Back</a></div>";
-                }
-                else{
-                    echo "<a type='button' class='btn btn btn-secondary' href='".dirname($_SERVER['PHP_SELF'])."/manager'>Back</a></div>";
-                }
+                echo "<a type='button' class='btn btn btn-secondary' href='".dirname($_SERVER['PHP_SELF'])."/'>Back</a></div>";
             ?>
         </form>
     </article>

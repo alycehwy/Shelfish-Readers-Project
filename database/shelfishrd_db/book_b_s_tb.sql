@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2022 at 11:24 PM
+-- Generation Time: Sep 01, 2022 at 11:57 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `shelfishrd_db`
+-- Database: `shopping_db`
 --
 
 -- --------------------------------------------------------
@@ -28,25 +28,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `book_b&s_tb` (
-  `productid` tinyint(11) NOT NULL,
+  `productid` int(11) NOT NULL,
   `productName` varchar(250) NOT NULL,
   `authorName` varchar(250) NOT NULL,
   `productDetails` varchar(1000) NOT NULL,
-  `price` float NOT NULL
+  `price` float NOT NULL,
+  `sourceImg` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `book_b&s_tb`
 --
 
-INSERT INTO `book_b&s_tb` (`productid`, `productName`, `authorName`, `productDetails`, `price`) VALUES
-(7, 'Ikigai', ' Hector Garcia', 'The Japanese Secret to a Long and Happy Life', 100),
-(8, 'Essentialism', ' Greg McKeown', 'The Disciplined Pursuit of Less', 150),
-(9, 'Factfulness', 'Anna Rosling', ' Ten Reasons We are Wrong About the World', 184),
-(15, 'The Third Door', 'Alex Banayan', 'The Wild Quest to Uncover How the Worlds Most Successful People Launched Their Careers', 199),
-(16, 'Factfulness', ' Anna Rosling Rönnlund, Hans Rosling, and Ola Rosling', 'Ten Reasons We are Wrong About the World', 199),
-(17, 'The Go-Giver', 'Bob Burg and John David Mann', 'A Little Story About a Powerful Business Idea is a business book', 300),
-(18, 'Rework', 'David Heinemeier Hansson and Jason Fried', 'A radical new business book from business trailblazers Jason Fried and David Heinemeier Hansson that offers a reappraisal of business best practice ', 349);
+INSERT INTO `book_b&s_tb` (`productid`, `productName`, `authorName`, `productDetails`, `price`, `sourceImg`) VALUES
+(24, 'Ikigai', 'Francesc Miralles and Hector Garcia	', '	The Japanese Secret to a Long and Happy Life', 150, './BookImages/ikigaiimg.webpbook-1.webp'),
+(25, 'Essentialism', 'Greg McKeown', 'The Disciplined Pursuit of Less', 150, './BookImages/Essentialismimg.webpbook-2.webp'),
+(26, 'Factfulness', 'Anna Rosling', '	Ten Reasons We are Wrong About the World', 135, './Bookimages/Factfulnessimg.webp'),
+(27, 'The Third Door', 'Alex Banayan', '	The Wild Quest to Uncover How the Worlds Most Successful People Launched Their Careers', 160, './Bookimages/The_Third_Doorimg.webp'),
+(28, 'The Go-Giver', 'Bob Burg and John David Mann', 'A Little Story About a Powerful Business Idea is a business book', 125, './Bookimages/The_Go-Giverimg.webp'),
+(29, 'Rework', 'David Heinemeier Hansson and Jason Fried', 'A radical new business book from business trailblazers Jason Fried and David Heinemeier Hansson that offers a reappraisal of business best practice', 299, './Bookimages/Reworkimg.webp');
 
 --
 -- Indexes for dumped tables
@@ -66,7 +66,7 @@ ALTER TABLE `book_b&s_tb`
 -- AUTO_INCREMENT for table `book_b&s_tb`
 --
 ALTER TABLE `book_b&s_tb`
-  MODIFY `productid` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

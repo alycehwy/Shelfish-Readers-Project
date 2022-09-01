@@ -1,8 +1,9 @@
-<main>
-    <section>
-        <table border="1">
+<section class="main_content">
+    <article class="brwrec_body">
+        <h3>Borrowed Record</h3>
+        <table class="table">
             <thead>
-                <tr>
+                <tr class="table-dark">
                     <th>Borrow #</th>
                     <th>Book ID</th>
                     <th>Book Name</th>
@@ -22,7 +23,7 @@
                     while($row = $result->fetch_assoc()){
                         if($row['status'] == 'borrowed'){
                             if($row['username'] == $_SESSION['username']){
-                                echo "<tr>";
+                                echo "<tr class='border-secondary'>";
                                 echo "<td>".$row['borrow_id']."</td>";
                                 echo "<td>".$row['b_id']."</td>";
                                 echo "<td>".$row['b_title']."</td>";
@@ -38,5 +39,5 @@
             ?>
             </tbody>
         </table>
-    </section>
-</main>
+    </article>
+</section>

@@ -26,16 +26,17 @@
         }
     }
 ?>
-<main>
-    <section>
-        <table border="1">
+<section class="main_content">
+    <article class="manager_body">
+        <h3>Manager User</h3>
+        <table class="table">
             <thead>
-                <tr>
+                <tr class="table-dark">
                     <th>User ID</th>
                     <th>User Name</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>email</th>
+                    <th>Email</th>
                     <th colspan=2 >Actions</th>
                 </tr>
             </thead>
@@ -49,7 +50,7 @@
                     $selectCmd = "SELECT * FROM user_tb WHERE title = 'user'";
                     $result = $dbConection->query($selectCmd);
                     while($row = $result->fetch_assoc()){
-                        echo "<tr>";
+                        echo "<tr class='border-secondary'>";
                         echo "<td>".$row['user_id']."</td>";
                         echo "<td>".$row['username']."</td>";
                         echo "<td>".$row['first_name']."</td>";
@@ -64,5 +65,5 @@
             ?>
             </tbody>
         </table>
-    </section>
-</main>
+    </article>
+</section>

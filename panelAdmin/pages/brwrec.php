@@ -1,8 +1,9 @@
-<main>
-    <section>
-        <table border="1">
+<section class="main_content">
+    <article class="brwrec_body">
+        <h3>Borrowed Record</h3>
+        <table class="table">
             <thead>
-                <tr>
+                <tr class="table-dark">
                     <th>Borrow #</th>
                     <th>User ID</th>
                     <th>Username</th>
@@ -23,7 +24,7 @@
                     $result = $dbConection->query($bookSelect);
                     while($row = $result->fetch_assoc()){
                         if($row['status'] == 'borrowed'){
-                            echo "<tr>";
+                            echo "<tr class='border-secondary'>";
                             echo "<td>".$row['borrow_id']."</td>";
                             echo "<td>".$row['user_id']."</td>";
                             echo "<td>".$row['username']."</td>";
@@ -40,5 +41,5 @@
             ?>
             </tbody>
         </table>
-    </section>
-</main>
+    </article>
+</section>

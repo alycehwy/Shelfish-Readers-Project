@@ -8,17 +8,19 @@
             switch($_GET['action']){
                 case "accept":
                     $returnDate = date("Y-m-d");
-                    $updateCmd = "UPDATE borrow_tb SET return_date = '".$returnDate."' ,status = 'borrowed'  WHERE borrow_id = $borrow_id";
-                    $result = $dbConection-> query($updateCmd);
-                    if($result === true){
+                    $updatebrw = "UPDATE borrow_tb SET return_date = '".$returnDate."' ,status = 'borrowed'  WHERE borrow_id = $borrow_id";
+                    $updatebook = "UPDATE books_tb SET available = 'true' WHERE borrow_id = $borrow_id";
+                    $resultbrw = $dbConection-> query($updatebrw);
+                    $resultbook = $dbConection-> query($updatebook);
+                    if($resultbrw === true && $resultbook === true){
                         echo "<script>alert('Accept the Request')</script>";
                     }else{
                         echo "<script>alert('Action failed')</script>";
                     }
                     break;
                 case "reject":
-                    $updateCmd = "UPDATE borrow_tb SET status = 'borrowing'  WHERE borrow_id = $borrow_id";
-                    $result = $dbConection-> query($updateCmd);
+                    $updatebrw = "UPDATE borrow_tb SET status = 'borrowing'  WHERE borrow_id = $borrow_id";
+                    $result = $dbConection-> query($updatebrw);
                     if($result === true){
                         echo "<script>alert('Reject the Request')</script>";
                     }else{
@@ -30,11 +32,12 @@
         }
     }
 ?>
-<main>
-    <section>
-        <table border="1">
+<section class="main_content">
+    <article class="reqreturn_body">
+        <h3>Return Request</h3>
+        <table class="table">
             <thead>
-                <tr>
+                <tr class="table-dark">
                     <th>Borrow #</th>
                     <th>User ID</th>
                     <th>Username</th>
@@ -55,7 +58,7 @@
                     $result = $dbConection->query($bookSelect);
                     while($row = $result->fetch_assoc()){
                         if($row['status'] == 'returning'){
-                            echo "<tr>";
+                            echo "<tr class='border-secondary'>";
                             echo "<td>".$row['borrow_id']."</td>";
                             echo "<td>".$row['user_id']."</td>";
                             echo "<td>".$row['username']."</td>";
@@ -72,5 +75,5 @@
             ?>
             </tbody>
         </table>
-    </section>
-</main>
+    </article>
+</section>

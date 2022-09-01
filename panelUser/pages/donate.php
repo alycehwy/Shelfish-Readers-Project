@@ -1,34 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate</title>
-</head>
-<body class="donate">
-    <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
-        <fieldset>
-            <legend>Donate Now</legend>
-            <div class="donateInfo">
-                <label>First Name: </label>
-                <input type="text" name="firstName" placeholder="First Name" />
-                <label>Last Name: </label>
-                <input type="text" name="lastName" placeholder="Last Name" />
-                <label>Email: </label>
-                <input type="email" name="email" placeholder="Email" />
-                <label>Donate to where: </label>
-                <select name='donateTo'>
-                    <option value="">Choose the mechanism you want to donate</option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                </select>
-
+<section class="main_content">
+    <article class="donate_body">
+        <h3>Donate Form</h3>
+        <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
+            <div>
+                <label for="firstName" class='form-label'>First Name: </label>
+                <input type="text" class='form-control' name="firstName" placeholder="First Name" />
             </div>
-            <button type="submit">Donate</button>
-        </fieldset>
-    </form>
-</body>
-</html>
+            <div>
+                <label for="lastName" class='form-label'>Last Name: </label>
+                <input type="text" class='form-control' name="lastName" placeholder="Last Name" />
+            </div>
+            <div>
+                <label for="email" class='form-label'>Email: </label>
+                <input type="email" class='form-control' name="email" placeholder="Email" />
+            </div>
+            <div>
+                <label for="donateTo" class='form-label'>Donate Amoumt: </label>
+                <!-- <select name='donateTo'>
+                    <option value="">Choose the amount you want to donate</option>
+                    <option value="50">$50</option>
+                    <option value="100">$100</option>
+                    <option value="200">$200</option>
+                    <option value="500">$500</option>
+                </select> -->
+                <input type="text" class='form-control' name="donateTo" placeholder="Put the amount you want to donate" />
+            </div>
+            <div class="donateBtn">
+                <button type="submit" class="btn btn-primary">Donate</button>
+            </div>
+        </form>
+    </article>
+</section>

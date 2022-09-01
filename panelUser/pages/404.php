@@ -1,3 +1,5 @@
-<?php
-    echo "<h1>Page not found</h1>";
-?>
+<section>
+    <?php
+        echo "<h1>Page not found</h1>";
+    ?>
+</section>

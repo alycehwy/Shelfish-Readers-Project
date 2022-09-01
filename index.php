@@ -54,10 +54,14 @@
         <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
             <fieldset class="border border-2">
                 <div class="info">
-                    <label>Username: </label>
-                    <input type="text" name="username" placeholder="Type your username" />
-                    <label>Password: </label>
-                    <input type="password" name="password" placeholder="Type your password" />
+                    <div>
+                        <label class='form-label'>Username: </label>
+                        <input type="text" class='form-control' name="username" placeholder="Type your username" />
+                    </div>
+                    <div>
+                        <label class='form-label'>Password: </label>
+                        <input type="password" class='form-control' name="password" placeholder="Type your password" />
+                    </div>
                 </div>
                 <p class="error <?php echo $loginError ?>">*username/password invalid</p>
                 <!-- <div class="checkbox">
