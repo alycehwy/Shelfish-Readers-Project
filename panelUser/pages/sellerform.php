@@ -33,11 +33,11 @@
         <?php
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $productid = " ";
-            $productName = $_POST['productName'];
-            $authorName = $_POST['authorName'];
-            $productDetails = $_POST['productDetails'];
-            $price = $_POST['price'];
-            $sourceImg = $_FILES['bImg'];
+            $productName = htmlspecialchars($_POST['productName']);
+            $authorName = htmlspecialchars($_POST['authorName']);
+            $productDetails = htmlspecialchars($_POST['productDetails']);
+            $price = htmlspecialchars($_POST['price']);
+            $sourceImg = htmlspecialchars($_FILES['bImg']);
             $imgInfo = pathinfo($sourceImg['name']);
             $imgDest = "./Bookimages/".$sourceImg['name'];
             $imgExtension = ["jpg", "jpeg", "webp"];

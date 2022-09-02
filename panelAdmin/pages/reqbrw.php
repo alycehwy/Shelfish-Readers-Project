@@ -13,6 +13,8 @@
                     $updatebook = "UPDATE books_tb SET available = 'false' WHERE borrow_id = $borrow_id";
                     $resultbrw = $dbConection-> query($updatebrw);
                     $resultbook = $dbConection-> query($updatebook);
+                    echo $resultbrw;
+                    echo $resultbook;
                     if($resultbrw === true && $resultbook === true){
                         echo "<script>alert('Accept the Request')</script>";
                     }else{
@@ -21,6 +23,7 @@
                     break;
                 case "reject":
                     $updatebrw = "UPDATE borrow_tb SET status = 'rejected' WHERE borrow_id = $borrow_id";
+                    $delebrw = "DELETE FROM borrow_tb WHERE  borrow_id = $borrow_id";
                     $result = $dbConection-> query($updatebrw);
                     if($result === true){
                         echo "<script>alert('Reject the Request')</script>";

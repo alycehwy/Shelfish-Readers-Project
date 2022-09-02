@@ -6,6 +6,34 @@ $dbcon = mysqli_connect("localhost", "root", "", "shelfishrd_db");
     <article class="buyer_body">
         <h3>Buy a Second-hand book</h3>
         <?php
+        // function component($productName, $authorName, $price, $productDetails, $sourceImg, $productid)
+        // {
+        //     $element = "
+        //         <div class='border border-secondary buyer_div'>
+        //             <div class=\"card mb-3"."style=\"max-width: 540px;"."\>
+        //                 <div class=\"row g-0\">
+        //                     <div class=\"col-md-4\">
+        //                         <img src=$sourceImg class=\"img-thumbnail rounded-start" ."style=\"max-width: 70%;"."\">
+        //                     </div>
+        //                     <div class=\"col-md-8\">
+        //                         <div class=\"card-body\">
+        //                             <h5 class=\"fs-1 fw-bold card-title\">$productName</h5>
+        //                             <h6 class=\"fs-3 fw-normal\">$authorName</h6>
+        //                             <p class=\"fs-5 fw-lighter card-text\">$productDetails</p>
+        //                             <h5><span>$$price</span></h5>
+        //                             <p class=\"card-text font-monospace\"><small class=\"text-muted\">updated a few seconds ago.</small></p>
+        //                         </div>
+        //                         <div class='centerBtn'>
+        //                             <button class=\"btn text-white bg-primary bg-gradient border mx-3\" type=\"submit\" name=\"add\">Add to Cart</button>
+        //                         </div>
+        //                      </div>
+        //                 </div>
+        //                 <input type='hidden' name='product_id' value='$productid'>
+        //             </div>
+        //         </div>
+        //     ";
+        //     echo $element;
+        // }
         function component($productName, $authorName, $price, $productDetails, $sourceImg, $productid)
         {
             $element = "
@@ -22,9 +50,6 @@ $dbcon = mysqli_connect("localhost", "root", "", "shelfishrd_db");
                                     <p class=\"fs-5 fw-lighter card-text\">$productDetails</p>
                                     <h5><span>$$price</span></h5>
                                     <p class=\"card-text font-monospace\"><small class=\"text-muted\">updated a few seconds ago.</small></p>
-                                </div>
-                                <div class='centerBtn'>
-                                    <button class=\"btn text-white bg-primary bg-gradient border mx-3\" type=\"submit\" name=\"add\">Add to Cart</button>
                                 </div>
                              </div>
                         </div>

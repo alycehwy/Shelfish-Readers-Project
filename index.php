@@ -56,11 +56,11 @@
                 <div class="info">
                     <div>
                         <label class='form-label'>Username: </label>
-                        <input type="text" class='form-control' name="username" placeholder="Type your username" />
+                        <input type="text" class='form-control' name="username" placeholder="Type your username" required/>
                     </div>
                     <div>
                         <label class='form-label'>Password: </label>
-                        <input type="password" class='form-control' name="password" placeholder="Type your password" />
+                        <input type="password" class='form-control' name="password" placeholder="Type your password" required/>
                     </div>
                 </div>
                 <p class="error <?php echo $loginError ?>">*username/password invalid</p>

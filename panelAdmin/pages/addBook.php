@@ -1,7 +1,7 @@
 <section class="main_content">
     <article class="addbook_body">
         <h3>Add Book</h3>
-        <form class='addbook' method='POST' action='<?php echo parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);?>'>
+        <form class='addbook' method='POST'>
             <div>
                 <label for="b_title" class='form-label'>Book Title: </label>
                 <input type="text" class='form-control' name="b_title" placeholder="Book name" require/>
@@ -37,25 +37,24 @@
                 $b_pri = htmlspecialchars(floatval($b_p));
                 $b_price = htmlspecialchars(round($b_pri,2));
                 $b_keywords = htmlspecialchars($_POST['b_keywords']);
-                $b_likes = ((Int)$_POST['b_likes']);
 
                 //making the connection
                 if($dbConection->connect_error){
                     die("Connection error");
                 }else{
                     //if the connection is succesfull insert this data into the databse
-                if($b_title!="" && $b_author!="" && $b_description!="" && $b_keywords!=""){
-                    $insertCmd = "INSERT INTO books_tb (b_title,b_author,b_price,b_description,b_keywords,b_likes) VALUES ('".$b_title."','".$b_author."','".(Float)$b_price."','".$b_description."','".$b_keywords."','".(Int)$b_likes."')";
-                    $result = $dbConection->query($insertCmd);
-                    if($result === true){
-                        echo "<script>alert('".$b_title."', register Success')</script>";  
-                    }else{
-                        echo "<script>alert('Action failed')</script>";
-                    }
-                    $dbConection->close();
-                }else{
+                    if($b_title!="" && $b_author!="" && $b_description!="" && $b_keywords!=""){
+                        $insertCmd = "INSERT INTO books_tb (b_title,b_author,b_price,b_description,b_keywords,b_likes) VALUES ('".$b_title."','".$b_author."','".(Float)$b_price."','".$b_description."','".$b_keywords."','0')";
+                        $result = $dbConection->query($insertCmd);
+                         if($result === true){
+                            echo "<script>alert('Add Book Success')</script>";  
+                        }else{
+                            echo "<script>alert('Action failed')</script>";
+                        }
+                        $dbConection->close();
+                     }else{
                         echo "<script>alert('All data should be filled')</script>";;
-                }
+                    }
                 }
             }
         ?>
