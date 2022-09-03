@@ -51,10 +51,10 @@
                         $rowID = $resultID->fetch_assoc();
                         $bookID = $rowID['LAST_INSERT_ID()'];
                         if($result === true){
-                            $selectBook = "SELECT * FROM books_tb";
-                            $resultBook = $dbConection->query($selectBook);
-                            while($rowBook = $resultBook->fetch_assoc()){
-                                $insertLike = "INSERT INTO like_control (`user_id`, `b_id`) VALUES ('".$userID."','".$rowBook['b_id']."')";
+                            $selectUser = "SELECT * FROM user_tb";
+                            $resultUser = $dbConection->query($selectUser);
+                            while($rowUser = $resultUser->fetch_assoc()){
+                                $insertLike = "INSERT INTO like_control (`user_id`, `b_id`) VALUES ('".$rowUser['user_id']."','".$bookID."')";
                                 $resultinsert = $dbConection-> query($insertLike);
                             }
                            echo "<script>alert('Add Book Success')</script>";  

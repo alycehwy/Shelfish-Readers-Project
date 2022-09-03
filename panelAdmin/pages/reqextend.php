@@ -9,10 +9,11 @@
                 case "accept":
                     $selectCmd = "SELECT * FROM borrow_tb WHERE borrow_id = $borrow_id";
                     $selectresult = $dbConection -> query($selectCmd);
-                    $row = $result->fetch_assoc();
+                    $row = $selectresult->fetch_assoc();
                     $startDate = $row['expiry_date'];
+                    $extend = $row['extend_times'] + 1;
                     $expiryDate = date("Y-m-d",strtotime($startDate)+30*86400);
-                    $updateCmd = "UPDATE borrow_tb SET expiry_date = '".$expiryDate."' WHERE borrow_id = $borrow_id";
+                    $updateCmd = "UPDATE borrow_tb SET expiry_date = '".$expiryDate."',status = 'borrowing', extend_times='$extend' WHERE borrow_id = $borrow_id";
                     $result = $dbConection-> query($updateCmd);
                     if($result === true){
                         echo "<script>alert('Accept the Request')</script>";
@@ -46,6 +47,8 @@
                     <th>Book ID</th>
                     <th>Book Name</th>
                     <th>Book Author</th>
+                    <th>Issue Date</th>
+                    <th>Expiry Date</th>
                     <th>Extend Times</th>
                     <th colspan=2 >Actions</th>
                 </tr>
@@ -57,22 +60,22 @@
                     die("Connection error");
                 }
                 else{
-                    $bookSelect = "SELECT * FROM borrow_tb INNER JOIN books_tb ON borrow_tb.b_id = books_tb.b_id INNER JOIN user_tb ON borrow_tb.user_id = user_tb.user_id";
+                    $bookSelect = "SELECT * FROM borrow_tb INNER JOIN books_tb ON borrow_tb.b_id = books_tb.b_id INNER JOIN user_tb ON borrow_tb.buser_id = user_tb.user_id  WHERE borrow_tb.status = 'extending'";
                     $result = $dbConection->query($bookSelect);
                     while($row = $result->fetch_assoc()){
-                        if($row['status'] == 'extending'){
-                            echo "<tr class='border-secondary'>";
-                            echo "<td>".$row['borrow_id']."</td>";
-                            echo "<td>".$row['user_id']."</td>";
-                            echo "<td>".$row['username']."</td>";
-                            echo "<td>".$row['b_id']."</td>";
-                            echo "<td>".$row['b_title']."</td>";
-                            echo "<td>".$row['b_author']."</td>";
-                            echo "<td>".$row['extend_times']."</td>";
-                            echo "<td><a class='btn btn-primary' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?borrow_id=".$row['borrow_id']."&action=accept'>Accept</a></td>";
-                            echo "<td><a class='btn btn-danger' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?borrow_id=".$row['borrow_id']."&action=reject'>Reject</a></td>";
-                            echo "</tr>";
-                        }
+                        echo "<tr class='border-secondary'>";
+                        echo "<td>".$row['borrow_id']."</td>";
+                        echo "<td>".$row['buser_id']."</td>";
+                        echo "<td>".$row['username']."</td>";
+                        echo "<td>".$row['b_id']."</td>";
+                        echo "<td>".$row['b_title']."</td>";
+                        echo "<td>".$row['b_author']."</td>";
+                        echo "<td>".$row['issue_date']."</td>";
+                        echo "<td>".$row['expiry_date']."</td>";
+                        echo "<td>".$row['extend_times']."</td>";
+                        echo "<td><a class='btn btn-primary' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?borrow_id=".$row['borrow_id']."&action=accept'>Accept</a></td>";
+                        echo "<td><a class='btn btn-danger' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?borrow_id=".$row['borrow_id']."&action=reject'>Reject</a></td>";
+                        echo "</tr>";
                     }
                     $dbConection->close();
                 }

@@ -72,6 +72,7 @@ main{
 .home_body, .manager_body, .books_body, .editbook_body, .edituser_body, .addbook_body, .reqbrw_body, .reqextend_body, .reqreturn_body, .curbrw_body, .brwrec_body{
     transform: rotate(-2deg);
     height: 100%;
+    width: 95%;
 }
 
 .home_body h3, .manager_body h3, .books_body h3, .editbook_body h3, .edituser_body h3, .addbook_body h3, .reqbrw_body h3, .reqextend_body h3, .reqreturn_body h3, .curbrw_body h3, .brwrec_body h3{

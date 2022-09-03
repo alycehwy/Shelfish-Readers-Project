@@ -9,7 +9,7 @@
                 case "accept":
                     $startDate = date("Y-m-d");
                     $expiryDate = date("Y-m-d",strtotime($startDate)+30*86400);
-                    $updatebrw = "UPDATE borrow_tb SET issue_date = '".$startDate."', expiry_date = '".$expiryDate."' ,status = 'borrowing' WHERE borrow_id = $ ";
+                    $updatebrw = "UPDATE borrow_tb SET issue_date = '".$startDate."', expiry_date = '".$expiryDate."' ,status = 'borrowing' WHERE borrow_id = $borrow_id ";
                     $updatebook = "UPDATE books_tb SET available = 'false' WHERE borrow_id = $borrow_id";
                     $resultbrw = $dbConection-> query($updatebrw);
                     $resultbook = $dbConection-> query($updatebook);
@@ -20,11 +20,9 @@
                     }
                     break;
                 case "reject":
-                    $updatebrw = "UPDATE borrow_tb SET status = 'rejected' WHERE borrow_id = $borrow_id";
                     $delebrw = "DELETE FROM borrow_tb WHERE  borrow_id = $borrow_id";
-                    $result = $dbConection-> query($updatebrw);
                     $delresult = $dbConection-> query($delebrw);
-                    if($result === true && $delresult == true){
+                    if($delresult == true){
                         echo "<script>alert('Reject the Request')</script>";
                     }else{
                         echo "<script>alert('Action failed')</script>";
@@ -57,13 +55,12 @@
                     die("Connection error");
                 }
                 else{
-                    $bookSelect = "SELECT * FROM borrow_tb INNER JOIN books_tb ON borrow_tb.b_id = books_tb.b_id INNER JOIN user_tb ON borrow_tb.user_id = user_tb.user_id";
+                    $bookSelect = "SELECT * FROM borrow_tb INNER JOIN books_tb ON borrow_tb.b_id = books_tb.b_id INNER JOIN user_tb ON borrow_tb.buser_id = user_tb.user_id  WHERE borrow_tb.status = 'requesting'";
                     $result = $dbConection->query($bookSelect);
                     while($row = $result->fetch_assoc()){
-                        if($row['status'] == 'requesting'){
                             echo "<tr class='border-secondary'>";
                             echo "<td>".$row['borrow_id']."</td>";
-                            echo "<td>".$row['user_id']."</td>";
+                            echo "<td>".$row['buser_id']."</td>";
                             echo "<td>".$row['username']."</td>";
                             echo "<td>".$row['b_id']."</td>";
                             echo "<td>".$row['b_title']."</td>";
@@ -71,7 +68,6 @@
                             echo "<td><a class='btn btn-primary' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?borrow_id=".$row['borrow_id']."&action=accept'>Accept</a></td>";
                             echo "<td><a class='btn btn-danger' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?borrow_id=".$row['borrow_id']."&action=reject'>Reject</a></td>";
                             echo "</tr>";
-                        }
                     }
                     $dbConection->close();
                 }

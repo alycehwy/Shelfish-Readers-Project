@@ -78,16 +78,22 @@
                             $updateCmd = "UPDATE like_control SET like_chk = 'false' WHERE b_id = '".$row['b_id']."'";
                         }
                         if($row['available'] == 'false'){
-                            if($row['status'] == 'borrowing'){
-                                if($row['user_id'] == $user_id){
-                                    echo "<td><a class='btn btn-success disabled' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=borrow' disable>Borrowing</a></td></tr>";
+                            if($row['buser_id'] == $user_id){
+                                if($row['status'] == 'borrowing'){
+                                    echo "<td><a class='btn btn-success disabled'>Borrowing</a></td></tr>";
                                 }
-                                else{
-                                    echo "<td><a class='btn btn-secondary disabled' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=borrow'>Unavailable</a></td></tr>";
+                                elseif($row['status'] == 'requesting'){
+                                    echo "<td><a class='btn btn-warning disabled'>Requesting</a></td></tr>";
+                                }
+                                elseif($row['status'] == 'returning'){
+                                    echo "<td><a class='btn btn-warning disabled'>Returning</a></td></tr>";
+                                }
+                                elseif($row['status'] == 'extending'){
+                                    echo "<td><a class='btn btn-warning disabled'>Extending</a></td></tr>";
                                 }
                             }
-                            elseif($row['status'] == 'requesting'){
-                                echo "<td><a class='btn btn-btn btn-warning disabled' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=borrow' disable>Requesting</a></td></tr>";
+                            else{
+                                echo "<td><a class='btn btn-secondary disabled'>Unavailable</a></td></tr>";
                             }
                         }
                         else{
@@ -116,16 +122,22 @@
                             $updateCmd = "UPDATE like_control SET like_chk = 'false' WHERE b_id = '".$row['b_id']."'";
                         }
                         if($row['available'] == 'false'){
-                            if($row['status'] == 'borrowing'){
-                                if($row['user_id'] == $user_id){
-                                    echo "<td><a class='btn btn-success disabled' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=borrow' disable>Borrowing</a></td></tr>";
+                            if($row['buser_id'] == $user_id){
+                                if($row['status'] == 'borrowing'){
+                                    echo "<td><a class='btn btn-success disabled'>Borrowing</a></td></tr>";
                                 }
-                                else{
-                                    echo "<td><a class='btn btn-secondary disabled' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=borrow'>Unavailable</a></td></tr>";
+                                elseif($row['status'] == 'requesting'){
+                                    echo "<td><a class='btn btn-warning disabled'>Requesting</a></td></tr>";
+                                }
+                                elseif($row['status'] == 'returning'){
+                                    echo "<td><a class='btn btn-warning disabled'>Returning</a></td></tr>";
+                                }
+                                elseif($row['status'] == 'extending'){
+                                    echo "<td><a class='btn btn-warning disabled'>Extending</a></td></tr>";
                                 }
                             }
-                            elseif($row['status'] == 'requesting'){
-                                echo "<td><a class='btn btn-btn btn-warning disabled' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=borrow' disable>Requesting</a></td></tr>";
+                            else{
+                                echo "<td><a class='btn btn-secondary disabled'>Unavailable</a></td></tr>";
                             }
                         }
                         else{

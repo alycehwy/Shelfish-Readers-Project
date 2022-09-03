@@ -1,3 +1,15 @@
+<?php
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        $email = $_POST['email'];
+        $email = filter_var($email,FILTER_SANITIZE_EMAIL);
+        if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+            echo "<script>alert('Invalid Email')</script>";
+        }
+        else{
+            
+        }
+    }
+?>
 <section class="main_content">
     <article class="donate_body">
         <h3>Donate Form</h3>
