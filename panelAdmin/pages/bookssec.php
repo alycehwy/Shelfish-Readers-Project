@@ -39,17 +39,19 @@
             $dbConection = new mysqli($dbServername,$dbUsername,$dbPass,$dbname);
             if(isset($_POST['submit'])){
                 $search = mysqli_real_escape_string($dbConection,$_POST['search']);
-                $selectCmd = "SELECT * FROM book_tb WHERE b_id LIKE '%$search%' OR b_title LIKE '%$search%' OR b_author LIKE '%$search%' OR b_keywords LIKE '%$search%' AND b_type = 0";
+                $selectCmd = "SELECT * FROM book_tb WHERE b_id LIKE '%$search%' OR b_title LIKE '%$search%' OR b_author LIKE '%$search%' OR b_keywords LIKE '%$search%'";
                 $result=mysqli_query($dbConection,$selectCmd);
                 if(mysqli_num_rows($result)>0){
                     echo "<table class='table'><thead><tr class='table-dark'><th>Book</th><th>Book Description</th><th>Book Price</th><th>Likes</th><th colspan=2 >Actions</th></tr></thead><tbody>";
                     while($row=mysqli_fetch_assoc($result)){
-                        echo "<tr class='border-secondary'><td>".$row['b_title']."</br>By: ".$row['b_author']."</td>";
-                        echo "<td>".$row['b_description']."</td>";
-                        echo "<td>".$row['b_price']."CAD</td>";
-                        echo "<td>".$row['b_like']."</td>";
-                        echo "<td><a class='btn btn-primary' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?id=".$row['b_id']."&action=edit'>Edit</a></td>";
-                        echo "<td><a class='btn btn-danger' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?id=".$row['b_id']."&action=del'>Delete</a></td></tr>";
+                        if($row['b_type'] == '0'){
+                            echo "<tr class='border-secondary'><td>".$row['b_title']."</br>By: ".$row['b_author']."</td>";
+                            echo "<td>".$row['b_description']."</td>";
+                            echo "<td>".$row['b_price']."CAD</td>";
+                            echo "<td>".$row['b_like']."</td>";
+                            echo "<td><a class='btn btn-primary' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?id=".$row['b_id']."&action=edit'>Edit</a></td>";
+                            echo "<td><a class='btn btn-danger' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?id=".$row['b_id']."&action=del'>Delete</a></td></tr>";
+                        }
                     }
                 echo "</tbody></table>";
                 }else{
