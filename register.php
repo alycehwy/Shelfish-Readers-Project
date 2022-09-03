@@ -1,6 +1,5 @@
 <?php
     include './config.php';
-    
     $pwError = 'noshow';
     $pwValid = 'noshow';
     $userError = 'noshow';
@@ -35,7 +34,17 @@
                             $password =  password_hash($_POST['password'],PASSWORD_BCRYPT,["cost"=>9]);
                             $insertCmd = "INSERT INTO user_tb (username, password, first_name, last_name, email, title) VALUES ('".$username."', '".$password."', '".$firstName."', '".$lastName."', '".$email."','user')";
                             $result = $dbConection-> query($insertCmd);
+                            $newID = "SELECT LAST_INSERT_ID()";
+                            $resultID = $dbConection-> query($newID);
+                            $rowID = $resultID->fetch_assoc();
+                            $userID = $rowID['LAST_INSERT_ID()'];
                             if($result === true){
+                                $selectBook = "SELECT * FROM books_tb";
+                                $resultBook = $dbConection->query($selectBook);
+                                while($rowBook = $resultBook->fetch_assoc()){
+                                    $insertLike = "INSERT INTO like_control (`user_id`, `b_id`) VALUES ('".$userID."','".$rowBook['b_id']."')";
+                                    $resultinsert = $dbConection-> query($insertLike);
+                                }
                                 echo "<script>alert('Register Success')</script>";
                                 header("Refresh:0.01; url=http://localhost/", true);
                             }else{

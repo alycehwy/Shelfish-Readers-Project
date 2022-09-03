@@ -46,11 +46,21 @@
                     if($b_title!="" && $b_author!="" && $b_description!="" && $b_keywords!=""){
                         $insertCmd = "INSERT INTO books_tb (b_title,b_author,b_price,b_description,b_keywords,b_likes) VALUES ('".$b_title."','".$b_author."','".(Float)$b_price."','".$b_description."','".$b_keywords."','0')";
                         $result = $dbConection->query($insertCmd);
-                         if($result === true){
-                            echo "<script>alert('Add Book Success')</script>";  
-                        }else{
-                            echo "<script>alert('Action failed')</script>";
-                        }
+                        $newID = "SELECT LAST_INSERT_ID()";
+                        $resultID = $dbConection-> query($newID);
+                        $rowID = $resultID->fetch_assoc();
+                        $bookID = $rowID['LAST_INSERT_ID()'];
+                        if($result === true){
+                            $selectBook = "SELECT * FROM books_tb";
+                            $resultBook = $dbConection->query($selectBook);
+                            while($rowBook = $resultBook->fetch_assoc()){
+                                $insertLike = "INSERT INTO like_control (`user_id`, `b_id`) VALUES ('".$userID."','".$rowBook['b_id']."')";
+                                $resultinsert = $dbConection-> query($insertLike);
+                            }
+                           echo "<script>alert('Add Book Success')</script>";  
+                       }else{
+                           echo "<script>alert('Action failed')</script>";
+                       }
                         $dbConection->close();
                      }else{
                         echo "<script>alert('All data should be filled')</script>";;
