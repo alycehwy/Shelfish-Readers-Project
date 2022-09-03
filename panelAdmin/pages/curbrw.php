@@ -20,13 +20,13 @@
                     die("Connection error");
                 }
                 else{
-                    $bookSelect = "SELECT * FROM borrow_tb INNER JOIN books_tb ON borrow_tb.b_id = books_tb.b_id INNER JOIN user_tb ON borrow_tb.user_id = user_tb.user_id";
+                    $bookSelect = "SELECT * FROM borrow_tb INNER JOIN book_tb ON borrow_tb.b_id = book_tb.b_id INNER JOIN user_tb ON borrow_tb.buser_id = user_tb.user_id";
                     $result = $dbConection->query($bookSelect);
                     while($row = $result->fetch_assoc()){
                         if($row['status'] == 'borrowing'){
                             echo "<tr class='border-secondary'>";
                             echo "<td>".$row['borrow_id']."</td>";
-                            echo "<td>".$row['user_id']."</td>";
+                            echo "<td>".$row['buser_id']."</td>";
                             echo "<td>".$row['username']."</td>";
                             echo "<td>".$row['b_id']."</td>";
                             echo "<td>".$row['b_title']."</td>";

@@ -10,7 +10,7 @@
                 case "accept":
                     $returnDate = date("Y-m-d");
                     $updatebrw = "UPDATE borrow_tb SET return_date = '".$returnDate."' ,status = 'borrowed'  WHERE borrow_id = $borrow_id";
-                    $updatebook = "UPDATE books_tb SET available = 'true' WHERE b_id = $b_id";
+                    $updatebook = "UPDATE book_tb SET b_available = '1' WHERE b_id = $b_id";
                     $resultbrw = $dbConection-> query($updatebrw);
                     $resultbook = $dbConection-> query($updatebook);
                     if($resultbrw === true && $resultbook === true){
@@ -55,7 +55,7 @@
                     die("Connection error");
                 }
                 else{
-                    $bookSelect = "SELECT * FROM borrow_tb INNER JOIN books_tb ON borrow_tb.b_id = books_tb.b_id INNER JOIN user_tb ON borrow_tb.buser_id = user_tb.user_id  WHERE borrow_tb.status = 'returning'";
+                    $bookSelect = "SELECT * FROM borrow_tb INNER JOIN book_tb ON borrow_tb.b_id = book_tb.b_id INNER JOIN user_tb ON borrow_tb.buser_id = user_tb.user_id  WHERE borrow_tb.status = 'returning'";
                     $result = $dbConection->query($bookSelect);
                     while($row = $result->fetch_assoc()){
                         if($row['status'] == 'returning'){

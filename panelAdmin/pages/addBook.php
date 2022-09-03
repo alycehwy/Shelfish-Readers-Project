@@ -44,7 +44,7 @@
                 }else{
                     //if the connection is succesfull insert this data into the databse
                     if($b_title!="" && $b_author!="" && $b_description!="" && $b_keywords!=""){
-                        $insertCmd = "INSERT INTO books_tb (b_title,b_author,b_price,b_description,b_keywords,b_likes) VALUES ('".$b_title."','".$b_author."','".(Float)$b_price."','".$b_description."','".$b_keywords."','0')";
+                        $insertCmd = "INSERT INTO book_tb (b_title,b_author,b_description,b_price,b_keywords,b_type,puser_id) VALUES ('".$b_title."','".$b_author."','".$b_description."','".(Float)$b_price."','".$b_keywords."','1','1')";
                         $result = $dbConection->query($insertCmd);
                         $newID = "SELECT LAST_INSERT_ID()";
                         $resultID = $dbConection-> query($newID);

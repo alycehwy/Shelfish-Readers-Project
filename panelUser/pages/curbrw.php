@@ -54,7 +54,7 @@
                     $selectCmd = "SELECT * FROM user_tb WHERE username = '".$_SESSION['username']."' AND title = 'user'";
                     $result = $dbConection->query($selectCmd);
                     $row = $result->fetch_assoc();
-                    $bookSelect = "SELECT * FROM borrow_tb INNER JOIN books_tb ON borrow_tb.b_id = books_tb.b_id INNER JOIN user_tb ON borrow_tb.buser_id = user_tb.user_id WHERE borrow_tb.buser_id = ".$row['user_id']." AND borrow_tb.status !='borrowed'";
+                    $bookSelect = "SELECT * FROM borrow_tb INNER JOIN book_tb ON borrow_tb.b_id = book_tb.b_id INNER JOIN user_tb ON borrow_tb.buser_id = user_tb.user_id WHERE borrow_tb.buser_id = ".$row['user_id']." AND borrow_tb.status !='borrowed'";
                     $result = $dbConection->query($bookSelect);
                     while($row = $result->fetch_assoc()){
                         echo "<tr class='border-secondary'>";

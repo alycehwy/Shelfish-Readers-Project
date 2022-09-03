@@ -25,8 +25,9 @@
                     <a class="list-group-item list-group-item-action" href="./manager">Manager User</a>
                 </div>
                 <div class="list-group">
-                    <a class="list-group-item list-group-item-action" href="./books">Books</a>
-                    <a class="list-group-item list-group-item-action" href="./addbook">Add New Book</a>
+                    <a class="list-group-item list-group-item-action" href="./books">Library Books</a>
+                    <a class="list-group-item list-group-item-action" href="./bookssec">Second-Hand Books</a>
+                    <a class="list-group-item list-group-item-action" href="./addbook">Add Library Book</a>
                 </div>
                 <div class="list-group">
                     <a class="list-group-item list-group-item-action" href="./reqbrw">Borrow Request</a>

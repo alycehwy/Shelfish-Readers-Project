@@ -1,5 +1,5 @@
 <?php
-$dbcon = mysqli_connect("localhost", "root", "", "shelfishrd_db");
+$dbcon = mysqli_connect("localhost", "root", "", "r_shelfishrd_db");
 
 ?>
 <section class="main_content_buy">
@@ -89,12 +89,12 @@ $dbcon = mysqli_connect("localhost", "root", "", "shelfishrd_db");
                 ";
             echo $element;
         }
-        $connection = mysqli_connect('localhost', 'root', '', 'shelfishrd_db');
+        $connection = mysqli_connect('localhost', 'root', '', 'r_shelfishrd_db');
     
-        $SelectCmd = "SELECT * FROM book_bs_tb";
+        $SelectCmd = "SELECT * FROM book_tb WHERE b_type = 0";
         $result = $dbcon->query($SelectCmd);
         while($row = mysqli_fetch_array($result)){
-            echo component($row['productName'],$row['authorName'],$row['price'],$row['productDetails'],$row['sourceImg'],$row['productDetails']);
+            echo component($row['b_title'],$row['b_author'],$row['b_price'],$row['b_description'],$row['b_source_img'],$row['b_id']);
         }
         // while($row = mysqli_fetch_array($result)){
         //     echo cartElement($row['productName'],$row['authorName'],$row['price'],$row['productDetails'],$row['sourceImg'],$row['productDetails']);

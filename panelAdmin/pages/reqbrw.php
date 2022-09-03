@@ -10,10 +10,8 @@
                     $startDate = date("Y-m-d");
                     $expiryDate = date("Y-m-d",strtotime($startDate)+30*86400);
                     $updatebrw = "UPDATE borrow_tb SET issue_date = '".$startDate."', expiry_date = '".$expiryDate."' ,status = 'borrowing' WHERE borrow_id = $borrow_id ";
-                    $updatebook = "UPDATE books_tb SET available = 'false' WHERE borrow_id = $borrow_id";
                     $resultbrw = $dbConection-> query($updatebrw);
-                    $resultbook = $dbConection-> query($updatebook);
-                    if($resultbrw === true && $resultbook === true){
+                    if($resultbrw === true){
                         echo "<script>alert('Accept the Request')</script>";
                     }else{
                         echo "<script>alert('Action failed')</script>";
@@ -55,7 +53,7 @@
                     die("Connection error");
                 }
                 else{
-                    $bookSelect = "SELECT * FROM borrow_tb INNER JOIN books_tb ON borrow_tb.b_id = books_tb.b_id INNER JOIN user_tb ON borrow_tb.buser_id = user_tb.user_id  WHERE borrow_tb.status = 'requesting'";
+                    $bookSelect = "SELECT * FROM borrow_tb INNER JOIN book_tb ON borrow_tb.b_id = book_tb.b_id INNER JOIN user_tb ON borrow_tb.buser_id = user_tb.user_id  WHERE borrow_tb.status = 'requesting'";
                     $result = $dbConection->query($bookSelect);
                     while($row = $result->fetch_assoc()){
                             echo "<tr class='border-secondary'>";

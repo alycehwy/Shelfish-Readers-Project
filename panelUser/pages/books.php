@@ -12,8 +12,8 @@
             $user_id = $row['user_id'];
             switch($_GET['action']){
                 case "borrow":
-                    $insertCmd = "INSERT INTO borrow_tb (status,b_id,user_id) VALUES ('requesting','".$id."','".$user_id."')";
-                    $updateCmd = "UPDATE books_tb SET available='false' WHERE b_id =$id";
+                    $insertCmd = "INSERT INTO borrow_tb (status,b_id,buser_id) VALUES ('requesting','".$id."','".$user_id."')";
+                    $updateCmd = "UPDATE book_tb SET b_available='0' WHERE b_id =$id";
                     $insertresult = $dbConection->query($insertCmd);
                     $updateresult = $dbConection->query($updateCmd);
                     if($insertresult === true && $updateresult === true){
@@ -23,7 +23,7 @@
                     }
                     break;
                 case "addlike":
-                    $updateCmd = "UPDATE books_tb SET b_likes = b_likes+1 WHERE b_id = $id";
+                    $updateCmd = "UPDATE book_tb SET b_like = b_like+1 WHERE b_id = $id";
                     $updateCmdlike = "UPDATE like_control SET like_chk = 'true' WHERE b_id = $id AND user_id = $user_id";
                     $updateresult = $dbConection->query($updateCmd);
                     $updatelikeresult = $dbConection->query($updateCmdlike);
@@ -32,7 +32,7 @@
                     }
                     break;
                 case "dellike":
-                    $updateCmd = "UPDATE books_tb SET b_likes = b_likes-1 WHERE b_id = $id";
+                    $updateCmd = "UPDATE book_tb SET b_like = b_like-1 WHERE b_id = $id";
                     $updateCmdlike = "UPDATE like_control SET like_chk = 'false' WHERE b_id = $id AND user_id = $user_id";
                     $updateresult = $dbConection->query($updateCmd);
                     $updatelikeresult = $dbConection->query($updateCmdlike);
@@ -62,14 +62,14 @@
             $user_id = $rowUser['user_id'];      
             if(isset($_POST['submit'])){
                 $search = mysqli_real_escape_string($dbConection,$_POST['search']);
-                $selectCmd = "SELECT * FROM books_tb LEFT JOIN borrow_tb ON books_tb.b_id = borrow_tb.b_id AND borrow_tb.status != 'borrowed' LEFT JOIN like_control ON books_tb.b_id = like_control.b_id AND like_control.user_id = $user_id WHERE 'b_id' LIKE '%$search%' OR b_title LIKE '%$search%' OR b_author LIKE '%$search%' OR b_keywords LIKE '%$search%'";
+                $selectCmd = "SELECT * FROM book_tb LEFT JOIN borrow_tb ON book_tb.b_id = borrow_tb.b_id AND borrow_tb.status != 'borrowed' LEFT JOIN like_control ON book_tb.b_id = like_control.b_id AND like_control.user_id = $user_id WHERE 'b_id' LIKE '%$search%' OR b_title LIKE '%$search%' OR b_author LIKE '%$search%' OR b_keywords LIKE '%$search%' AND b_type = 1";
                 $result=mysqli_query($dbConection,$selectCmd);
                 if(mysqli_num_rows($result)>0){
                     echo "<table class='table'><thead><tr class='table-dark'><th>Book</th><th>Book Description</th><th colspan=2>Likes</th><th>Actions</th></tr></thead><tbody>";
                     while($row=mysqli_fetch_assoc($result)){
                         echo "<tr class='border-secondary'><td>".$row['b_title']."</br>By: ".$row['b_author']."</td>";
                         echo "<td>".$row['b_description']."</td>";
-                        echo "<td>".$row['b_likes']."</td>";
+                        echo "<td>".$row['b_like']."</td>";
                         if($row['like_chk'] == 'false'){
                             echo "<td><a class='btn btn-heart' id='like' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=addlike'><i class='far fa-heart' style='font-size:18px;''></i></a></td>";
                             $updateCmd = "UPDATE like_control SET like_chk = 'true' WHERE b_id = '".$row['b_id']."' AND user_id = '".$row['user_id']."'";
@@ -77,7 +77,7 @@
                             echo "<td><a class='btn btn-heart' id='unlike' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=dellike'><i class='fas fa-heart' style='font-size:18px;color:red''></i></a></td>";
                             $updateCmd = "UPDATE like_control SET like_chk = 'false' WHERE b_id = '".$row['b_id']."'";
                         }
-                        if($row['available'] == 'false'){
+                        if($row['b_available'] == '0'){
                             if($row['buser_id'] == $user_id){
                                 if($row['status'] == 'borrowing'){
                                     echo "<td><a class='btn btn-success disabled'>Borrowing</a></td></tr>";
@@ -106,14 +106,14 @@
                 echo "No book found";
                 }
             }else{
-                $selectCmd = "SELECT * FROM books_tb LEFT JOIN borrow_tb ON books_tb.b_id = borrow_tb.b_id AND borrow_tb.status != 'borrowed' LEFT JOIN like_control ON books_tb.b_id = like_control.b_id AND like_control.user_id = $user_id";
+                $selectCmd = "SELECT * FROM book_tb LEFT JOIN borrow_tb ON book_tb.b_id = borrow_tb.b_id AND borrow_tb.status != 'borrowed' LEFT JOIN like_control ON book_tb.b_id = like_control.b_id AND like_control.user_id = $user_id WHERE b_type = 1";
                 $result=mysqli_query($dbConection,$selectCmd);
                 if(mysqli_num_rows($result)>0){
                     echo "<table class='table'><thead><tr class='table-dark'><th>Book</th><th>Book Description</th><th colspan=2>Likes</th><th>Actions</th></tr></thead><tbody>";
                     while($row=mysqli_fetch_assoc($result)){
                         echo "<tr class='border-secondary'><td>".$row['b_title']."</br>By: ".$row['b_author']."</td>";
                         echo "<td>".$row['b_description']."</td>";
-                        echo "<td>".$row['b_likes']."</td>";
+                        echo "<td>".$row['b_like']."</td>";
                         if($row['like_chk'] == 'false'){
                             echo "<td><a class='btn btn-heart' id='like' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=addlike'><i class='far fa-heart' style='font-size:18px;''></i></a></td>";
                             $updateCmd = "UPDATE like_control SET like_chk = 'true' WHERE b_id = '".$row['b_id']."' AND user_id = '".$row['user_id']."'";
@@ -121,7 +121,7 @@
                             echo "<td><a class='btn btn-heart' id='unlike' href='".parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH)."?b_id=".$row['b_id']."&action=dellike'><i class='fas fa-heart' style='font-size:18px;color:red''></i></a></td>";
                             $updateCmd = "UPDATE like_control SET like_chk = 'false' WHERE b_id = '".$row['b_id']."'";
                         }
-                        if($row['available'] == 'false'){
+                        if($row['b_available'] == '0'){
                             if($row['buser_id'] == $user_id){
                                 if($row['status'] == 'borrowing'){
                                     echo "<td><a class='btn btn-success disabled'>Borrowing</a></td></tr>";
