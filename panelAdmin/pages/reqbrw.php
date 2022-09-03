@@ -10,10 +10,8 @@
                     $startDate = date("Y-m-d");
                     $expiryDate = date("Y-m-d",strtotime($startDate)+30*86400);
                     $updatebrw = "UPDATE borrow_tb SET issue_date = '".$startDate."', expiry_date = '".$expiryDate."' ,status = 'borrowing' WHERE borrow_id = $borrow_id ";
-                    $updatebook = "UPDATE books_tb SET available = 'false' WHERE borrow_id = $borrow_id";
                     $resultbrw = $dbConection-> query($updatebrw);
-                    $resultbook = $dbConection-> query($updatebook);
-                    if($resultbrw === true && $resultbook === true){
+                    if($resultbrw === true){
                         echo "<script>alert('Accept the Request')</script>";
                     }else{
                         echo "<script>alert('Action failed')</script>";

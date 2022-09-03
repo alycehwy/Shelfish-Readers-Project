@@ -12,7 +12,7 @@
             $user_id = $row['user_id'];
             switch($_GET['action']){
                 case "borrow":
-                    $insertCmd = "INSERT INTO borrow_tb (status,b_id,user_id) VALUES ('requesting','".$id."','".$user_id."')";
+                    $insertCmd = "INSERT INTO borrow_tb (status,b_id,buser_id) VALUES ('requesting','".$id."','".$user_id."')";
                     $updateCmd = "UPDATE books_tb SET available='false' WHERE b_id =$id";
                     $insertresult = $dbConection->query($insertCmd);
                     $updateresult = $dbConection->query($updateCmd);

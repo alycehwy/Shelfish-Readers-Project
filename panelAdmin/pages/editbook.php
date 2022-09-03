@@ -27,7 +27,7 @@
         ?>
         <form method="POST" action="<?php echo parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH) ?>">
             <?php
-                echo "<h4>User ID: ".$_SESSION['bookData']['b_id']."</h4>";
+                echo "<h4>Book ID: ".$_SESSION['bookData']['b_id']."</h4>";
                 echo "<div><label class='form-label' for='b_title'>Book Title:</label>";
                 echo "<input type='text' class='form-control' name='b_title' value='".$_SESSION['bookData']['b_title']."'required/></div>";
                 echo "<div><label class='form-label' for='b_author'>Book Author:</label>";
