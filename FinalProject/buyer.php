@@ -1,48 +1,9 @@
 <?php
-$dbcon = mysqli_connect("localhost", "root", "", "books_db");
-
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-    <title>Buyer Page</title>
-</head>
-
-<body>
-    <?php
-    function component($productName, $authorName, $price, $productDetails, $sourceImg, $productid)
-    {
-        $element = "
-                <div class=\"card mb-3 " ."style=\"max-width: 540px;"."\>
-                    <div class=\"row g-0\">
-                        <div class=\"col-md-4\">
-                            <img src=$sourceImg class=\"img-thumbnail rounded-start" ."style=\"max-width: 70%;"."\">
-                        </div>
-                        <div class=\"col-md-8\">
-                            <div class=\"card-body\">
-                                <h5 class=\"fs-1 fw-bold card-title\">$productName</h5>
-                                <h6 class=\"fs-3 fw-normal\">$authorName</h6>
-                                <p class=\"fs-5 fw-lighter card-text\">$productDetails</p>
-                                <h5><span>$$price</span></h5>
-                                <p class=\"card-text font-monospace\"><small class=\"text-muted\">updated a few seconds ago.</small></p>
-                            </div>
-                            <button class=\"btn text-white bg-primary bg-gradient border mx-3\" type=\"submit\" name=\"add\">Add to Cart</button>
-                        </div>
-                    </div>
-                    <input type='hidden' name='product_id' value='$productid'>
-                </div>
-        ";
-        echo $element;
-    }
-
-    function cartElement($sourceImg, $productName, $authorName, $price, $productid)
-    {
+    session_start();
+    require_once ('/xampp/htdocs/PHP/FinalProject/dbConFile.php');
+    $database = new CreateDb("shelfishrd_db", "book_bs_tb");
+    
+    function cartElement($sourceImg, $productName, $authorName, $price, $productid){
         $element = "
                     <form action=\"cart.php?action=remove&id=$productid\" method=\"POST\" class=\"cart-items\">
                         <div class=\"border rounded\">
@@ -55,7 +16,7 @@ $dbcon = mysqli_connect("localhost", "root", "", "books_db");
                                     <small class=\"text-secondary\">Author: $authorName</small>
                                     <h5 class=\"pt-2\">$$price</h5>
                                     <button type=\"submit\" class=\"btn btn-warning\">Save for Later</button>
-                                    <button type=\"submit\" class=\"btn btn-danger mx-2\" name=\"remove\">Remove</button>
+                                    <button type=\"submit\" class=\"btn btn-danger mx-2\" name=\"remove\" value='$productid'>Remove</button>
                                 </div>
                                 <div class=\"col-md-3 py-5\">
                                     <div>
@@ -70,19 +31,101 @@ $dbcon = mysqli_connect("localhost", "root", "", "books_db");
             ";
         echo $element;
     }
-    $connection = mysqli_connect('localhost', 'root', '', 'books_db');
 
-    $SelectCmd = "SELECT * FROM books_tb";
-    $result = $dbcon->query($SelectCmd);
+    if (isset($_POST['add'])){
+        $pId = $_POST['add'];
+        array_push($_SESSION['cart'], $pId);
+        if(isset($_SESSION['cart'])){
+    
+            if(in_array($pId, $_SESSION['cart'])){
+                echo "<script>alert('Product is already added in the cart..!')</script>";
+                echo "<script>window.location = 'buyer.php'</script>";
+            }else{
+    
+                $count = count($_SESSION['cart']);
+                $item_array = array(
+                    'productid' => $_POST['productid']
+                );
+    
+                $_SESSION['cart'][$count] = $item_array;
+            }
+    
+        }else{
+            echo $productid;
+            print_r($_POST['productid']);
 
-    while($row = mysqli_fetch_array($result)){
-        echo component($row['productName'],$row['authorName'],$row['price'],$row['productDetails'],$row['sourceImg'],$row['productDetails']);
+            $item_array = array(
+                'productid' => $_POST['productid']
+            );
+    
+            $_SESSION['cart'][0] = $item_array;
+            print_r($_SESSION['cart']);
+        }
+    }
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <title>Buyer Page</title>
+</head>
+
+<body>
+    <header>
+        <a href="./seller.php" style="text-decoration: none ; font-size: 36px; text-align: left; width:100% ;">SELLER PAGE</a>
+        <a href="./cart.php" style="text-decoration: none ; font-size: 36px; text-align: left; width:100% ;">
+            <h5>
+            <i class="fas fashopping-cart"></i> Cart
+            <?php
+                if(isset($_SESSION['cart'])){
+                    $count = count($_SESSION['cart']);
+                    echo "<span>$count</span>";
+                }else{
+                    echo "<span>0</span>";
+                }
+            ?>
+            </h5>
+        </a>
+    </header>
+    <?php
+
+    function component($productName, $authorName, $price, $productDetails, $sourceImg, $productid){
+        $element = "
+                <div class=\"card mb-3 " ."style=\"max-width: 540px;"."\>
+                    <div class=\"row g-0\">
+                        <div class=\"col-md-4\">
+                            <img src=$sourceImg class=\"img-thumbnail rounded-start" ."style=\"max-width: 70%;"."\">
+                        </div>
+                        <div class=\"col-md-8\">
+                            <div class=\"card-body\">
+                                <h5 class=\"fs-1 fw-bold card-title\">$productName</h5>
+                                <h6 class=\"fs-3 fw-normal\">$authorName</h6>
+                                <p class=\"fs-5 fw-lighter card-text\">$productDetails</p>
+                                <h5><span>$$price</span></h5>
+                                <p class=\"card-text font-monospace\"><small class=\"text-muted\">updated a few seconds ago.</small></p>
+                            </div>
+                            <form method='POST' action='".$_SERVER["PHP_SELF"]."'>
+                                <button class=\"btn text-white bg-primary bg-gradient border mx-3\" type=\"submit\" name=\"add\" value='$productid'>Add to Cart</button>
+                            </form>  
+                        </div>
+                    </div>
+                    <input type='hidden' name='productid' value='$productid'>
+                </div>  
+        ";
+        echo $element;
     }
 
-    // while($row = mysqli_fetch_array($result)){
-    //     echo cartElement($row['productName'],$row['authorName'],$row['price'],$row['productDetails'],$row['sourceImg'],$row['productDetails']);
-    // }
-    $dbcon->close();
+    $result = $database->getData();
+    $SelectCmd = "SELECT * FROM book_bs_tb";
+
+    while($row = mysqli_fetch_array($result)){
+        echo component($row['productName'],$row['authorName'],$row['price'],$row['productDetails'],$row['sourceImg'],$row['productid']);
+    }
     ?>
 
     <!-- JavaScript Bundle with Popper -->
