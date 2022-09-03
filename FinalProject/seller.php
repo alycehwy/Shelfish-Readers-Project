@@ -1,5 +1,6 @@
 <?php
-$dbcon = mysqli_connect("localhost", "root", "", "books_db");
+    include ('/xampp/htdocs/PHP/FinalProject/dbConFile.php');
+    $database = new CreateDb("shelfishrd_db", "book_bs_tb");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +13,9 @@ $dbcon = mysqli_connect("localhost", "root", "", "books_db");
 </head>
 
 <body>
+    <header>
+        <a href="./buyer.php" style="text-decoration: none ; font-size: 36px; text-align: left; width:100% ;">BUYER PAGE</a>
+    </header>
     <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
         <input name="productName" placeholder="Enter product name" required />
         <input name="authorName" placeholder="Enter author name" required />
@@ -34,14 +38,14 @@ $dbcon = mysqli_connect("localhost", "root", "", "books_db");
         if (in_array($imgInfo['extension'], $imgExtension) && getimagesize($sourceImg['tmp_name'])) {
             if ($sourceImg['size'] < 40000000000) {
                 if (move_uploaded_file($sourceImg['tmp_name'], $imgDest . $sourceImg['name'])) {
-                    $dbcon = mysqli_connect("localhost", "root", "", "books_db");
+                    $dbcon = mysqli_connect("localhost", "root", "", "shelfishrd_db");
                     if ($dbcon->connect_error) {
                         echo "<h1>" . $dbcon->connect_error . "</h1>";
                     } else {
-                        $insertCmd = "INSERT INTO books_tb (productName,authorName,productDetails,price,sourceImg) VALUES ('" . $productName . "','" . $authorName . "','" . $productDetails . "','" . $price . "','" . $imgDest . "')";
+                        $insertCmd = "INSERT INTO book_bs_tb (productName,authorName,productDetails,price,sourceImg) VALUES ('" . $productName . "','" . $authorName . "','" . $productDetails . "','" . $price . "','" . $imgDest . "')";
                         if ($dbcon->query($insertCmd) === TRUE) {
                             echo "<h1>Ad posted</h1>";
-                            echo "<a href='/FinalProject/buyer.php'>View ad</a>";
+                            echo "<a href='/PHP/FinalProject/buyer.php'>View ad</a>";
                         } else {
                             echo "<h1>Ad not registered</h1>" . $dbcon->error;
                         }
