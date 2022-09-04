@@ -32,6 +32,7 @@
                 <div class="list-group">
                     <a class="list-group-item list-group-item-action" href="./buyer">Buy second-hand books</a>
                     <a class="list-group-item list-group-item-action" href="./seller">Sell second-hand books</a>
+                    <a class="list-group-item list-group-item-action" href="./cart">Cart</a>
                 </div>
                 <div class="list-group">
                     <a class="list-group-item list-group-item-action" href="./donate">Donate</a>

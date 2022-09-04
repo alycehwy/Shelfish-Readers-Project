@@ -4,13 +4,12 @@
 
     if (isset($_POST['add'])){
         $pId = $_POST['add'];
-        $_SESSION['cart'] = [];
         array_push($_SESSION['cart'], $pId);
         if(isset($_SESSION['cart'])){
-    
+            
             if(in_array($pId, $_SESSION['cart'])){
                 echo "<script>alert('Product is already added in the cart..!')</script>";
-                echo "<script>window.location = 'buyer.php'</script>";
+                echo "<script>window.location = 'cart'</script>";
             }else{
     
                 $count = count($_SESSION['cart']);
@@ -67,7 +66,7 @@
                                     <p class=\"fs-5 fw-lighter card-text\">$productDetails</p>
                                     <h5><span>$$price</span></h5>
                                 </div>
-                                <form method='POST' action='cart'>
+                                <form method='POST' action='./buyer'>
                                     <button class=\"btn text-white bg-primary bg-gradient border mx-3\" type=\"submit\" name=\"add\" value='$productid'>Add to Cart</button>
                                 </form>  
                             </div>
