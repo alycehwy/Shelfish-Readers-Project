@@ -3,7 +3,7 @@
     $database = new CreateDb("shelfishrd_db", "book_bs_tb");
     function cartElement($sourceImg, $productName, $authorName, $price, $productid){
         $element = "
-                    <form action=\"cart.php?action=remove&id=$productid\" method=\"POST\" class=\"cart-items\">
+                    <form action=\"cart?action=remove&id=$productid\" method=\"POST\" class=\"cart-items\">
                         <div class=\"border rounded\">
                             <div class=\"row bg-white\">
                                 <div class=\"col-md-3 pl-0\">
@@ -34,7 +34,7 @@
             if($value == $_POST['remove']){
                 unset($_SESSION['cart'][$key]);
                 echo "<script>alert('Product has been Removed...!')</script>";
-                echo "<script>window.location = 'cart.php'</script>";
+                echo "<script>window.location = 'cart'</script>";
             }
         }
     } 
