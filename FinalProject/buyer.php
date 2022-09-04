@@ -2,7 +2,7 @@
     session_start();
     require_once ('/xampp/htdocs/PHP/FinalProject/dbConFile.php');
     $database = new CreateDb("shelfishrd_db", "book_bs_tb");
-    
+
     function cartElement($sourceImg, $productName, $authorName, $price, $productid){
         $element = "
                     <form action=\"cart.php?action=remove&id=$productid\" method=\"POST\" class=\"cart-items\">
@@ -34,6 +34,7 @@
 
     if (isset($_POST['add'])){
         $pId = $_POST['add'];
+        $_SESSION['cart'] = [];
         array_push($_SESSION['cart'], $pId);
         if(isset($_SESSION['cart'])){
     
