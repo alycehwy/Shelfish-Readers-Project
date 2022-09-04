@@ -4,6 +4,11 @@
 
     if (isset($_POST['add'])){
         $pId = $_POST['add'];
+        
+        if(!isset($_SESSION['cart'])){
+            $_SESSION['cart'] = [];
+        }
+
         array_push($_SESSION['cart'], $pId);
         if(isset($_SESSION['cart'])){
             
