@@ -77,12 +77,12 @@ main{
     border: 1px solid gray;
 }
 
-.home_body, .books_body, .edituser_body, .curbrw_body, .brwrec_body, .sellform_body, .donate_body{
+.home_body, .books_body, .edituser_body, .curbrw_body, .brwrec_body, .sellform_body, .donate_body, .cart-body{
     transform: rotate(-2deg);
     height: 100%;
 }
 
-.home_body h3, .books_body h3, .edituser_body h3, .curbrw_body h3, .brwrec_body h3, .sellform_body h3, .donate_body h3, .buyer_body h3{
+.home_body h3, .books_body h3, .edituser_body h3, .curbrw_body h3, .brwrec_body h3, .sellform_body h3, .donate_body h3, .buyer_body h3, .cart-body h3{
     text-align: center;
     padding: 2%;
     margin: 0%;
@@ -148,8 +148,8 @@ main{
 }
 
 /* Edit User Page, Sell Form, Donate Page */
-.edituser_body, .sellform_body, .donate_body{
-    width: 80%;
+.edituser_body, .sellform_body, .donate_body, .cart-body{
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -167,7 +167,7 @@ main{
     border-bottom: 1px solid gray;
 }
 
-.edituser_body div, .sellform_body div, .donate_body div{
+.edituser_body div, .sellform_body div, .donate_body div {
     display: flex;
     width: 90%;
     align-items: center;
@@ -181,7 +181,7 @@ main{
     width: 45%;
 }
 
-.edituser_body input, .sellform_body input, .donate_body input{
+.edituser_body input, .sellform_body input, .donate_body input {
     text-align: center;
 }
 
@@ -205,6 +205,22 @@ main{
 .buyer_div{
     padding: 1%;
 }
+
+/* Cart Page  */
+.cart-body{
+    display: flex;
+    padding: 1%;
+    width: 100%;
+    flex-direction: column; 
+   
+}
+
+.cart-content{
+    display: flex;
+    width: 100%;
+ 
+}
+
 
 /* Current Borrow Page */
 .curbrwAction{
