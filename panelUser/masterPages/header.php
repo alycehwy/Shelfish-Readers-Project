@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-    <title>Shelfish Readers Libaray</title>
+    <title>Shelfish Readers Library</title>
 </head>
 <body>
     <header>
         <div>
-            <h1>Shelfish Readers Libaray</h1>
+            <h1>Shelfish Readers Library</h1>
             <a class="btn btn-secondary" href="../">Log Out</a>
         </div>
     </header>

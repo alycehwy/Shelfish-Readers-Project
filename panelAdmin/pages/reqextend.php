@@ -35,7 +35,7 @@
         }
     }
 ?>
-<section class="main_content">
+<section class="main_content xtd">
     <article class="reqextend_body">
         <h3>Extend Request</h3>
         <table class="table">
